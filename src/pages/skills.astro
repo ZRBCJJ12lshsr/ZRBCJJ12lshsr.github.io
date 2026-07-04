@@ -45,14 +45,14 @@ const qualities = [
   <!-- Cert badges -->
   <div class="certs-row reveal">
     <div class="glass cert-chip">
-      <span class="cert-icon">🏅</span>
+      <span class="icon-badge cert-badge">🏅</span>
       <div>
         <p class="cert-title">Oracle Database Foundations — Junior Associate</p>
         <p class="cert-sub">September 2025 · Oracle Academy</p>
       </div>
     </div>
     <div class="glass cert-chip">
-      <span class="cert-icon">🗺</span>
+      <span class="icon-badge cert-badge">🗺</span>
       <div>
         <p class="cert-title">GIS Basics Certificate — Esri Training</p>
         <p class="cert-sub">March 2026 · Esri</p>
@@ -95,7 +95,7 @@ const qualities = [
   <div class="qualities-grid">
     {qualities.map((q, i) => (
       <div class={`glass quality-card reveal d${i + 1}`}>
-        <span class="q-icon">{q.icon}</span>
+        <span class="icon-badge q-badge">{q.icon}</span>
         <h3>{q.name}</h3>
         <p>{q.desc}</p>
       </div>
@@ -109,7 +109,7 @@ const qualities = [
 /* Certs */
 .certs-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
 .cert-chip { display: flex; align-items: center; gap: 1rem; flex: 1; min-width: 260px; }
-.cert-icon { font-size: 2rem; flex-shrink: 0; }
+.cert-badge { flex-shrink: 0; font-size: 1.5rem; }
 .cert-title { font-size: 0.88rem; font-weight: 600; color: #fff; }
 .cert-sub   { font-size: 0.75rem; color: var(--cyan); margin-top: 3px; }
 
@@ -152,7 +152,7 @@ const qualities = [
 .qualities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.2rem; }
 .quality-card { text-align: center; transition: transform 0.25s; }
 .quality-card:hover { transform: translateY(-5px); }
-.q-icon { font-size: 2rem; display: block; margin-bottom: 0.6rem; }
+.q-badge { margin: 0 auto 0.8rem; display: flex; }
 .quality-card h3 { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
 .quality-card p  { font-size: 0.83rem; color: var(--muted); line-height: 1.55; }
 </style>

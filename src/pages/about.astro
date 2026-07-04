@@ -40,7 +40,7 @@ const base = import.meta.env.BASE_URL;
       { icon: "♟",  title: "Logic & Strategy",     desc: "Board games and puzzles to keep the mind sharp" },
     ].map((h, i) => (
       <div class={`glass hobby-card reveal d${(i%4)+1}`}>
-        <span class="hobby-icon">{h.icon}</span>
+        <span class="icon-badge hobby-badge">{h.icon}</span>
         <h3>{h.title}</h3>
         <p>{h.desc}</p>
       </div>
@@ -98,7 +98,7 @@ const base = import.meta.env.BASE_URL;
 }
 .hobby-card { text-align: center; transition: transform 0.25s; }
 .hobby-card:hover { transform: translateY(-5px); }
-.hobby-icon { font-size: 2rem; display: block; margin-bottom: 0.6rem; }
+.hobby-badge { margin: 0 auto 0.8rem; display: flex; }
 .hobby-card h3 { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem; }
 .hobby-card p  { font-size: 0.83rem; color: var(--muted); line-height: 1.5; }
 

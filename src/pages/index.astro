@@ -38,10 +38,6 @@ const base = import.meta.env.BASE_URL;
       </div>
     </div>
 
-    <div class="scroll-hint">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
   </section>
 
   <!-- Quick cards -->
@@ -54,7 +50,7 @@ const base = import.meta.env.BASE_URL;
         { icon: "📄", title: "Academic",  desc: "Year 3 at UTeM — Oracle certified, GIS certified.", href: `${base}academic`, cta: "See history" },
       ].map(c => (
         <a href={c.href} class="quick-card glass reveal">
-          <div class="qc-icon">{c.icon}</div>
+          <div class="qc-icon"><span class="icon-badge">{c.icon}</span></div>
           <h3>{c.title}</h3>
           <p>{c.desc}</p>
           <span class="qc-cta">{c.cta} →</span>
@@ -114,20 +110,6 @@ const base = import.meta.env.BASE_URL;
 .hstat-l { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
 .hstat-div { width: 1px; height: 32px; background: var(--border); }
 
-.scroll-hint {
-  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 0.5rem; z-index: 1;
-}
-.scroll-hint span { font-size: 0.72rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
-.scroll-line {
-  width: 1px; height: 40px;
-  background: linear-gradient(to bottom, var(--cyan), transparent);
-  animation: scrollPulse 2s ease-in-out infinite;
-}
-@keyframes scrollPulse {
-  0%, 100% { opacity: 0.3; transform: scaleY(1); }
-  50% { opacity: 1; transform: scaleY(1.2); }
-}
 
 /* ── Cards ── */
 .cards-section { max-width: 960px; margin: 0 auto; padding: 5rem 2rem; }
@@ -142,7 +124,7 @@ const base = import.meta.env.BASE_URL;
   box-shadow: 0 0 40px var(--glow-sm), 0 20px 40px rgba(0,0,0,0.4);
   border-color: var(--cyan);
 }
-.qc-icon { font-size: 2.2rem; margin-bottom: 0.8rem; }
+.qc-icon { margin-bottom: 1rem; }
 .quick-card h3 { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
 .quick-card p  { font-size: 0.86rem; color: var(--muted); line-height: 1.6; flex: 1; margin-bottom: 1rem; }
 .qc-cta { font-size: 0.82rem; font-weight: 700; color: var(--cyan); }

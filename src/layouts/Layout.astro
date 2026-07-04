@@ -16,11 +16,130 @@ const base = import.meta.env.BASE_URL;
 </head>
 <body>
 
-  <!-- Animated ambient background -->
+  <!-- Static polygon network background -->
   <div class="bg-wrap" aria-hidden="true">
-    <div class="bg-orb orb-1"></div>
-    <div class="bg-orb orb-2"></div>
-    <div class="bg-orb orb-3"></div>
+    <svg class="bg-network" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%"   stop-color="#071120" />
+          <stop offset="45%"  stop-color="#0D1B2D" />
+          <stop offset="100%" stop-color="#091528" />
+        </linearGradient>
+        <radialGradient id="glowTL" cx="15%" cy="12%" r="38%">
+          <stop offset="0%"   stop-color="rgba(0,191,165,0.14)" />
+          <stop offset="100%" stop-color="transparent" stop-opacity="0" />
+        </radialGradient>
+        <radialGradient id="glowBR" cx="82%" cy="88%" r="32%">
+          <stop offset="0%"   stop-color="rgba(14,165,233,0.10)" />
+          <stop offset="100%" stop-color="transparent" stop-opacity="0" />
+        </radialGradient>
+      </defs>
+
+      <!-- Base gradient fill -->
+      <rect width="1440" height="900" fill="url(#bgGrad)" />
+      <!-- Ambient corner glows -->
+      <rect width="1440" height="900" fill="url(#glowTL)" />
+      <rect width="1440" height="900" fill="url(#glowBR)" />
+
+      <!-- Polygon network lines -->
+      <g stroke="rgba(0,191,165,0.13)" stroke-width="1" fill="none">
+        <!-- top-left cluster -->
+        <line x1="0"    y1="120" x2="180"  y2="40"  />
+        <line x1="0"    y1="120" x2="80"   y2="300" />
+        <line x1="180"  y1="40"  x2="320"  y2="180" />
+        <line x1="180"  y1="40"  x2="500"  y2="60"  />
+        <line x1="320"  y1="180" x2="80"   y2="300" />
+        <line x1="320"  y1="180" x2="650"  y2="200" />
+        <line x1="320"  y1="180" x2="450"  y2="320" />
+        <line x1="80"   y1="300" x2="200"  y2="480" />
+        <!-- top-center cluster -->
+        <line x1="500"  y1="60"  x2="650"  y2="200" />
+        <line x1="500"  y1="60"  x2="850"  y2="80"  />
+        <line x1="650"  y1="200" x2="450"  y2="320" />
+        <line x1="650"  y1="200" x2="850"  y2="80"  />
+        <line x1="650"  y1="200" x2="600"  y2="380" />
+        <line x1="450"  y1="320" x2="400"  y2="450" />
+        <line x1="450"  y1="320" x2="600"  y2="380" />
+        <!-- top-right cluster -->
+        <line x1="850"  y1="80"  x2="1050" y2="150" />
+        <line x1="850"  y1="80"  x2="950"  y2="350" />
+        <line x1="1050" y1="150" x2="1200" y2="50"  />
+        <line x1="1050" y1="150" x2="1350" y2="220" />
+        <line x1="1200" y1="50"  x2="1440" y2="80"  />
+        <line x1="1350" y1="220" x2="1440" y2="80"  />
+        <line x1="1350" y1="220" x2="1150" y2="450" />
+        <line x1="1350" y1="220" x2="1350" y2="380" />
+        <!-- mid-left cluster -->
+        <line x1="200"  y1="480" x2="400"  y2="450" />
+        <line x1="200"  y1="480" x2="100"  y2="680" />
+        <line x1="200"  y1="480" x2="300"  y2="720" />
+        <line x1="400"  y1="450" x2="600"  y2="380" />
+        <line x1="400"  y1="450" x2="500"  y2="650" />
+        <line x1="400"  y1="450" x2="300"  y2="720" />
+        <!-- mid-center cluster -->
+        <line x1="600"  y1="380" x2="750"  y2="480" />
+        <line x1="600"  y1="380" x2="950"  y2="350" />
+        <line x1="750"  y1="480" x2="950"  y2="350" />
+        <line x1="750"  y1="480" x2="700"  y2="720" />
+        <line x1="750"  y1="480" x2="500"  y2="650" />
+        <!-- mid-right cluster -->
+        <line x1="950"  y1="350" x2="1150" y2="450" />
+        <line x1="950"  y1="350" x2="900"  y2="680" />
+        <line x1="1150" y1="450" x2="1350" y2="380" />
+        <line x1="1150" y1="450" x2="1100" y2="720" />
+        <line x1="1150" y1="450" x2="900"  y2="680" />
+        <line x1="1350" y1="380" x2="1440" y2="580" />
+        <line x1="1350" y1="380" x2="1300" y2="650" />
+        <!-- bottom row -->
+        <line x1="100"  y1="680" x2="300"  y2="720" />
+        <line x1="300"  y1="720" x2="500"  y2="650" />
+        <line x1="500"  y1="650" x2="700"  y2="720" />
+        <line x1="700"  y1="720" x2="900"  y2="680" />
+        <line x1="900"  y1="680" x2="1100" y2="720" />
+        <line x1="1100" y1="720" x2="1300" y2="650" />
+        <line x1="1300" y1="650" x2="1440" y2="580" />
+      </g>
+
+      <!-- Network vertex dots -->
+      <g fill="rgba(0,191,165,0.30)">
+        <circle cx="0"    cy="120" r="2.5" />
+        <circle cx="180"  cy="40"  r="2.5" />
+        <circle cx="320"  cy="180" r="3"   />
+        <circle cx="80"   cy="300" r="2.5" />
+        <circle cx="500"  cy="60"  r="2.5" />
+        <circle cx="650"  cy="200" r="3.5" />
+        <circle cx="450"  cy="320" r="2.5" />
+        <circle cx="850"  cy="80"  r="3"   />
+        <circle cx="1050" cy="150" r="2.5" />
+        <circle cx="1200" cy="50"  r="2.5" />
+        <circle cx="1350" cy="220" r="3"   />
+        <circle cx="1440" cy="80"  r="2"   />
+        <circle cx="200"  cy="480" r="3"   />
+        <circle cx="400"  cy="450" r="3"   />
+        <circle cx="600"  cy="380" r="3.5" />
+        <circle cx="750"  cy="480" r="2.5" />
+        <circle cx="950"  cy="350" r="3"   />
+        <circle cx="1150" cy="450" r="3"   />
+        <circle cx="1350" cy="380" r="2.5" />
+        <circle cx="1440" cy="580" r="2"   />
+        <circle cx="100"  cy="680" r="2.5" />
+        <circle cx="300"  cy="720" r="2.5" />
+        <circle cx="500"  cy="650" r="3"   />
+        <circle cx="700"  cy="720" r="2.5" />
+        <circle cx="900"  cy="680" r="3"   />
+        <circle cx="1100" cy="720" r="2.5" />
+        <circle cx="1300" cy="650" r="2.5" />
+      </g>
+
+      <!-- Larger glowing halo rings at key hub nodes -->
+      <g fill="none" stroke="rgba(0,191,165,0.18)" stroke-width="1">
+        <circle cx="650"  cy="200" r="6" />
+        <circle cx="600"  cy="380" r="6" />
+        <circle cx="950"  cy="350" r="6" />
+      </g>
+    </svg>
+
+    <!-- Subtle dot-grid overlay -->
     <div class="bg-grid"></div>
   </div>
 
@@ -104,8 +223,8 @@ const base = import.meta.env.BASE_URL;
   --cyan:     #00BFA5;
   --cyan2:    #00E5CC;
   --blue:     #0EA5E9;
-  --bg:       #050d15;
-  --bg2:      #091522;
+  --bg:       #071120;
+  --bg2:      #0D1B2D;
   --card:     rgba(0,191,165,0.04);
   --border:   rgba(0,191,165,0.15);
   --glow:     rgba(0,191,165,0.35);
@@ -124,40 +243,21 @@ body {
   overflow-x: hidden;
 }
 
-/* ── Animated background ── */
-.bg-wrap { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-
-.bg-orb {
-  position: absolute; border-radius: 50%;
-  filter: blur(80px); opacity: 0.55; animation: drift 18s ease-in-out infinite alternate;
+/* ── Static polygon network background ── */
+.bg-wrap {
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none; overflow: hidden;
 }
-.orb-1 {
-  width: 700px; height: 700px; top: -200px; left: -150px;
-  background: radial-gradient(circle, rgba(0,191,165,0.4), transparent 70%);
-  animation-duration: 20s;
+.bg-network {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
 }
-.orb-2 {
-  width: 500px; height: 500px; bottom: -100px; right: -100px;
-  background: radial-gradient(circle, rgba(14,165,233,0.35), transparent 70%);
-  animation-duration: 15s; animation-delay: -6s;
-}
-.orb-3 {
-  width: 400px; height: 400px; top: 40%; left: 50%;
-  background: radial-gradient(circle, rgba(0,229,204,0.2), transparent 70%);
-  animation-duration: 25s; animation-delay: -10s;
-}
-@keyframes drift {
-  0%   { transform: translate(0, 0) scale(1); }
-  50%  { transform: translate(40px, -30px) scale(1.08); }
-  100% { transform: translate(-20px, 20px) scale(0.95); }
-}
-
 .bg-grid {
   position: absolute; inset: 0;
   background-image:
-    linear-gradient(rgba(0,191,165,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,191,165,0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
+    linear-gradient(rgba(0,191,165,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,191,165,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
 }
 
 /* ── Navbar ── */
@@ -168,7 +268,7 @@ body {
   transition: background 0.3s, padding 0.3s, box-shadow 0.3s;
 }
 .navbar.scrolled {
-  background: rgba(5,13,21,0.85);
+  background: rgba(7,17,32,0.88);
   backdrop-filter: blur(20px);
   padding: 0.7rem 2.5rem;
   box-shadow: 0 1px 0 var(--border), 0 8px 32px rgba(0,0,0,0.4);
@@ -206,7 +306,7 @@ body {
   .nav-links {
     display: none; flex-direction: column; gap: 1.2rem;
     position: absolute; top: 100%; left: 0; right: 0;
-    background: rgba(5,13,21,0.97); padding: 1.5rem 2.5rem;
+    background: rgba(7,17,32,0.97); padding: 1.5rem 2.5rem;
     border-bottom: 1px solid var(--border);
     backdrop-filter: blur(16px);
   }
@@ -240,18 +340,54 @@ footer {
   background: linear-gradient(90deg, var(--border), transparent);
 }
 
-/* ── Glass card ── */
+/* ── Glass card — static outer glow, dynamic on hover ── */
 .glass {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   backdrop-filter: blur(16px);
   padding: 1.8rem;
+  /* static ambient glow always visible */
+  box-shadow:
+    0 0 0 1px rgba(0,191,165,0.05),
+    0 0 18px rgba(0,191,165,0.07),
+    inset 0 0 24px rgba(0,191,165,0.02);
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 .glass:hover {
-  border-color: rgba(0,191,165,0.4);
-  box-shadow: 0 0 24px var(--glow-sm), 0 8px 32px rgba(0,0,0,0.3);
+  border-color: rgba(0,191,165,0.45);
+  /* dynamic glow on hover */
+  box-shadow:
+    0 0 28px rgba(0,191,165,0.22),
+    0 0 60px rgba(0,191,165,0.09),
+    0 8px 32px rgba(0,0,0,0.4),
+    inset 0 0 24px rgba(0,191,165,0.04);
+}
+/* Icon badge grows on card hover */
+.glass:hover .icon-badge {
+  transform: scale(1.15);
+  box-shadow:
+    0 0 18px rgba(0,191,165,0.45),
+    0 0 8px rgba(14,165,233,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+/* ── Icon badge — iOS curved-square style ── */
+.icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(0,191,165,0.18) 0%, rgba(14,165,233,0.12) 100%);
+  border: 1px solid rgba(0,191,165,0.22);
+  font-size: 1.65rem;
+  box-shadow:
+    0 0 12px rgba(0,191,165,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s;
+  flex-shrink: 0;
 }
 
 /* ── Glow button ── */
@@ -287,6 +423,12 @@ footer {
   transition: background 0.2s, box-shadow 0.2s;
 }
 .tag:hover { background: rgba(0,191,165,0.2); box-shadow: 0 0 12px var(--glow-sm); }
+
+/* ── Dark devicons: make visible on dark bg ── */
+img.tool-icon[alt="GitHub"],
+img.tag-icon[alt="GitHub"] {
+  filter: brightness(0) invert(0.85);
+}
 
 /* ── Fade animations (CSS fallback if GSAP not loaded) ── */
 @keyframes fadeUp {
