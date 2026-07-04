@@ -21,14 +21,18 @@ const base = import.meta.env.BASE_URL;
     <div class="bg-grid"></div>
   </div>
 
-  <!-- Custom cyan cursor (desktop only) -->
-  <div class="cursor-ring" id="cursorRing"></div>
-  <div class="cursor-core" id="cursorCore"></div>
+  <!-- Custom cyan arrow cursor (desktop only) -->
+  <div id="cursorArrow" class="cursor-arrow">
+    <svg width="20" height="26" viewBox="0 0 20 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1 1 L1 21 L5.5 16 L8.5 23 L11 22 L8 15 L14 15 Z"
+            fill="#00BFA5" stroke="#001a13" stroke-width="1.2" stroke-linejoin="round"/>
+    </svg>
+  </div>
 
   <!-- Navbar -->
   <nav class="navbar" id="navbar">
     <a href={`${base}`} class="nav-logo">CJJ</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
     <div class="nav-links" id="navLinks">
       <a href={`${base}`}>Home</a>
       <a href={`${base}about`}>About</a>
@@ -42,28 +46,24 @@ const base = import.meta.env.BASE_URL;
   <main><slot /></main>
 
   <footer>
-    <p>Crafted by <span class="footer-name">Chai Jian Jie</span> · Astro + GitHub Pages</p>
+    <p>Crafted by <span class="footer-name">Chai Jian Jie</span> &middot; Astro + GitHub Pages</p>
   </footer>
 
   <script>
-    // ── Mobile nav ──
     document.getElementById('navToggle')?.addEventListener('click', () => {
       document.getElementById('navLinks')?.classList.toggle('open');
     });
 
-    // ── Active link ──
     const path = window.location.pathname.replace(/\/$/, '') || '/';
     document.querySelectorAll('.nav-links a').forEach(a => {
       const href = (a as HTMLAnchorElement).getAttribute('href')?.replace(/\/$/, '') || '/';
       if (href === path) a.classList.add('active');
     });
 
-    // ── Navbar shrink ──
     window.addEventListener('scroll', () => {
       document.getElementById('navbar')?.classList.toggle('scrolled', window.scrollY > 40);
     });
 
-    // ── GSAP reveals ──
     window.addEventListener('load', () => {
       if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
       gsap.registerPlugin(ScrollTrigger);
@@ -86,33 +86,23 @@ const base = import.meta.env.BASE_URL;
       );
     });
 
-    // ════════════════════════════════════════════
-    //  CANVAS BACKGROUND — polygon network + mouse blackhole
-    // ════════════════════════════════════════════
     (function () {
       const canvas = document.getElementById('bgCanvas') as HTMLCanvasElement;
       if (!canvas) return;
       const ctx = canvas.getContext('2d')!;
-
       const BASE_W = 1440, BASE_H = 900;
       let W = 0, H = 0, sx = 1, sy = 1;
-
-      // Node original positions (base 1440×900 space)
       const RAW_NODES = [
         [0,120],[180,40],[320,180],[80,300],
         [500,60],[650,200],[450,320],
         [850,80],[1050,150],[1200,50],[1350,220],[1440,80],
         [200,480],[400,450],[600,380],[750,480],[950,350],[1150,450],[1350,380],[1440,580],
         [100,680],[300,720],[500,650],[700,720],[900,680],[1100,720],[1300,650],
-        // extra center nodes for density
         [720,140],[280,570],[1100,570]
       ];
-
       type Node = {ox:number;oy:number;cx:number;cy:number};
       const nodes: Node[] = RAW_NODES.map(([ox,oy]) => ({ox,oy,cx:ox,cy:oy}));
-
       const HUBS = new Set([5,14,16,27]);
-
       const EDGES = [
         [0,1],[0,3],[1,2],[1,4],[2,3],[2,5],[2,6],[3,12],
         [4,5],[4,7],[5,6],[5,7],[5,14],[5,27],[6,13],[6,14],
@@ -123,28 +113,16 @@ const base = import.meta.env.BASE_URL;
         [20,21],[21,22],[22,23],[23,24],[24,25],[25,26],[25,29],[24,29],
         [27,14],[28,20],[28,21]
       ];
-
       let mx = -9999, my = -9999;
-      const RADIUS  = 240;  // influence radius (base coords)
-      const STRENGTH = 0.32; // how far nodes pull (0–1)
-      const LERP    = 0.09;  // spring return speed
-
+      const RADIUS = 240, STRENGTH = 0.32, LERP = 0.22;
       function resize() {
-        W = canvas.width  = window.innerWidth;
+        W = canvas.width = window.innerWidth;
         H = canvas.height = window.innerHeight;
-        sx = W / BASE_W;
-        sy = H / BASE_H;
+        sx = W / BASE_W; sy = H / BASE_H;
       }
-
-      // Mouse position in base coords
-      const onMove = (e: MouseEvent) => { mx = e.clientX / sx; my = e.clientY / sy; };
-      const onLeave = () => { mx = -9999; my = -9999; };
-      document.addEventListener('mousemove', onMove);
-      document.addEventListener('mouseleave', onLeave);
-
-      // Only run influence on pointer:fine (desktop) devices
+      document.addEventListener('mousemove', (e: MouseEvent) => { mx = e.clientX / sx; my = e.clientY / sy; });
+      document.addEventListener('mouseleave', () => { mx = -9999; my = -9999; });
       const isMouse = window.matchMedia('(pointer: fine)').matches;
-
       function tick() {
         for (const n of nodes) {
           let tx = n.ox, ty = n.oy;
@@ -153,124 +131,61 @@ const base = import.meta.env.BASE_URL;
             const dist = Math.hypot(dx, dy);
             if (dist < RADIUS) {
               const t = Math.pow(1 - dist / RADIUS, 1.6) * STRENGTH;
-              tx = n.ox + dx * t;
-              ty = n.oy + dy * t;
+              tx = n.ox + dx * t; ty = n.oy + dy * t;
             }
           }
           n.cx += (tx - n.cx) * LERP;
           n.cy += (ty - n.cy) * LERP;
         }
       }
-
       function draw() {
         ctx.clearRect(0, 0, W, H);
-
-        // ─ base gradient ─
         const bg = ctx.createLinearGradient(0, 0, W, H);
-        bg.addColorStop(0,    '#071120');
+        bg.addColorStop(0, '#071120');
         bg.addColorStop(0.45, '#0D1B2D');
-        bg.addColorStop(1,    '#091528');
-        ctx.fillStyle = bg;
-        ctx.fillRect(0, 0, W, H);
-
-        // ─ ambient corner glows ─
-        const g1 = ctx.createRadialGradient(W*.15,H*.12,0, W*.15,H*.12,W*.42);
+        bg.addColorStop(1, '#091528');
+        ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+        const g1 = ctx.createRadialGradient(W*.15,H*.12,0,W*.15,H*.12,W*.42);
         g1.addColorStop(0,'rgba(0,191,165,0.16)'); g1.addColorStop(1,'transparent');
         ctx.fillStyle = g1; ctx.fillRect(0,0,W,H);
-
-        const g2 = ctx.createRadialGradient(W*.84,H*.88,0, W*.84,H*.88,W*.34);
+        const g2 = ctx.createRadialGradient(W*.84,H*.88,0,W*.84,H*.88,W*.34);
         g2.addColorStop(0,'rgba(14,165,233,0.12)'); g2.addColorStop(1,'transparent');
         ctx.fillStyle = g2; ctx.fillRect(0,0,W,H);
-
-        // ─ mouse proximity glow ─
-        if (isMouse && mx > -9000) {
-          const mg = ctx.createRadialGradient(mx*sx,my*sy,0, mx*sx,my*sy,260*sx);
-          mg.addColorStop(0,'rgba(0,191,165,0.09)'); mg.addColorStop(1,'transparent');
-          ctx.fillStyle = mg; ctx.fillRect(0,0,W,H);
-        }
-
-        // ─ scale positions ─
         const pos = nodes.map(n => ({x: n.cx*sx, y: n.cy*sy}));
         const s = Math.min(sx, sy);
-
-        // ─ edges ─
-        ctx.strokeStyle = 'rgba(0,191,165,0.25)';
-        ctx.lineWidth = 1.6;
+        ctx.strokeStyle = 'rgba(0,191,165,0.25)'; ctx.lineWidth = 1.6;
         for (const [a,b] of EDGES) {
-          ctx.beginPath();
-          ctx.moveTo(pos[a].x, pos[a].y);
-          ctx.lineTo(pos[b].x, pos[b].y);
-          ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(pos[a].x, pos[a].y); ctx.lineTo(pos[b].x, pos[b].y); ctx.stroke();
         }
-
-        // ─ nodes ─
         for (let i = 0; i < nodes.length; i++) {
-          const {x,y} = pos[i];
-          const isHub = HUBS.has(i);
-          const r = (isHub ? 6 : 4) * s;
-
+          const {x,y} = pos[i]; const isHub = HUBS.has(i); const r = (isHub ? 6 : 4) * s;
           ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2);
-          ctx.fillStyle = 'rgba(0,191,165,0.55)';
-          ctx.fill();
-
-          // outer halo ring on hub nodes
+          ctx.fillStyle = 'rgba(0,191,165,0.55)'; ctx.fill();
           if (isHub) {
             ctx.beginPath(); ctx.arc(x, y, 11*s, 0, Math.PI*2);
-            ctx.strokeStyle = 'rgba(0,191,165,0.22)';
-            ctx.lineWidth = 1.2;
-            ctx.stroke();
+            ctx.strokeStyle = 'rgba(0,191,165,0.22)'; ctx.lineWidth = 1.2; ctx.stroke();
           }
         }
       }
-
       function loop() { tick(); draw(); requestAnimationFrame(loop); }
-
-      resize();
-      window.addEventListener('resize', resize);
-      loop();
+      resize(); window.addEventListener('resize', resize); loop();
     })();
 
-    // ════════════════════════════════════════════
-    //  CUSTOM CURSOR (desktop / pointer:fine only)
-    // ════════════════════════════════════════════
     (function () {
-      const ring = document.getElementById('cursorRing') as HTMLElement;
-      const core = document.getElementById('cursorCore') as HTMLElement;
-      if (!ring || !core) return;
       if (!window.matchMedia('(pointer: fine)').matches) return;
-
-      let tx = 0, ty = 0; // target (mouse position)
-      let rx = 0, ry = 0; // ring current (lagged)
-
-      document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
-
-      // Show/hide on enter/leave window
-      document.addEventListener('mouseenter', () => { ring.style.opacity='1'; core.style.opacity='1'; });
-      document.addEventListener('mouseleave', () => { ring.style.opacity='0'; core.style.opacity='0'; });
-
-      // Expand ring on interactive elements
-      const targets = 'a, button, .glass, input, textarea, select, [role="button"]';
-      document.querySelectorAll(targets).forEach(el => {
-        el.addEventListener('mouseenter', () => ring.classList.add('hover'));
-        el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+      const arrow = document.getElementById('cursorArrow') as HTMLElement;
+      if (!arrow) return;
+      document.addEventListener('mouseenter', () => { arrow.style.opacity = '1'; });
+      document.addEventListener('mouseleave', () => { arrow.style.opacity = '0'; });
+      document.addEventListener('mousemove', e => {
+        arrow.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
       });
-
-      function moveCursor() {
-        // Core dot: instant
-        core.style.left = tx + 'px';
-        core.style.top  = ty + 'px';
-        // Ring: smooth lag
-        rx += (tx - rx) * 0.13;
-        ry += (ty - ry) * 0.13;
-        ring.style.left = rx + 'px';
-        ring.style.top  = ry + 'px';
-        requestAnimationFrame(moveCursor);
-      }
-      moveCursor();
     })();
   </script>
 </body>
 </html>
+
+<style is:global>
 
 <style is:global>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -299,15 +214,11 @@ body {
   overflow-x: hidden;
 }
 
-/* ── Canvas background ── */
 .bg-wrap {
-  position: fixed; inset: 0; z-index: -1; /* always behind content */
+  position: fixed; inset: 0; z-index: 0;
   pointer-events: none; overflow: hidden;
 }
-#bgCanvas {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-}
+#bgCanvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 .bg-grid {
   position: absolute; inset: 0;
   background-image:
@@ -316,43 +227,17 @@ body {
   background-size: 60px 60px;
 }
 
-/* ── Custom cursor — desktop (pointer:fine) only ── */
-.cursor-ring,
-.cursor-core {
-  position: fixed; pointer-events: none; z-index: 9999;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.2s;
+.cursor-arrow {
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9999;
+  will-change: transform;
+  filter: drop-shadow(0 0 3px rgba(0,191,165,0.85)) drop-shadow(0 0 8px rgba(0,191,165,0.42));
+  transition: opacity 0.15s;
+  transform: translate(0, 0);
 }
-.cursor-ring {
-  width: 34px; height: 34px;
-  border: 2px solid rgba(0,191,165,0.80);
-  box-shadow: 0 0 14px rgba(0,191,165,0.45), inset 0 0 6px rgba(0,191,165,0.08);
-  transition: width .22s ease, height .22s ease, border-color .22s, box-shadow .22s, background .22s, opacity .2s;
-}
-.cursor-ring.hover {
-  width: 54px; height: 54px;
-  border-color: var(--cyan);
-  background: rgba(0,191,165,0.07);
-  box-shadow: 0 0 26px rgba(0,191,165,0.55);
-}
-.cursor-core {
-  width: 6px; height: 6px;
-  background: var(--cyan);
-  box-shadow: 0 0 8px rgba(0,191,165,0.95);
-}
-/* mobile / touch — hide cursor, restore default */
-@media (pointer: coarse) {
-  .cursor-ring, .cursor-core { display: none; }
-  * { cursor: auto !important; }
-}
-/* desktop — hide default cursor */
-@media (pointer: fine) {
-  * { cursor: none; }
-  a, button, input, textarea, select { cursor: none; }
-}
+@media (pointer: coarse) { .cursor-arrow { display: none; } }
+@media (pointer: fine) { * { cursor: none; } }
 
-/* ── Navbar ── */
 .navbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
@@ -372,7 +257,6 @@ body {
   transition: text-shadow 0.3s;
 }
 .nav-logo:hover { text-shadow: 0 0 28px rgba(0,191,165,0.7); }
-
 .nav-links { display: flex; gap: 2rem; }
 .nav-links a {
   color: var(--muted); text-decoration: none; font-size: 0.88rem;
@@ -387,8 +271,7 @@ body {
 }
 .nav-links a:hover, .nav-links a.active { color: var(--cyan); text-shadow: 0 0 12px var(--glow-sm); }
 .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
-
-.nav-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.4rem; cursor: none; }
+.nav-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.4rem; }
 
 @media (max-width: 680px) {
   .nav-toggle { display: block; }
@@ -401,8 +284,7 @@ body {
   .nav-links.open { display: flex; }
 }
 
-/* ── Main & Footer ── */
-main { position: relative; z-index: 1; padding-top: 76px; }
+main { position: relative; z-index: 1; padding-top: 76px; isolation: isolate; }
 footer {
   position: relative; z-index: 1; text-align: center;
   padding: 2.5rem; color: var(--muted); font-size: 0.82rem;
@@ -410,7 +292,6 @@ footer {
 }
 .footer-name { color: var(--cyan); font-weight: 600; }
 
-/* ── Shared page layout ── */
 .page-section { max-width: 920px; margin: 0 auto; padding: 4rem 2rem 5rem; }
 .page-title {
   font-size: clamp(2rem, 5vw, 3rem); font-weight: 800;
@@ -428,14 +309,13 @@ footer {
   background: linear-gradient(90deg, var(--border), transparent);
 }
 
-/* ── Glass card — static glow always on, pulsing ring on hover ── */
 .glass {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   backdrop-filter: blur(16px);
   padding: 1.8rem;
-  position: relative;
+  position: relative; z-index: 1;
   box-shadow:
     0 0 0 1px rgba(0,191,165,0.08),
     0 0 30px rgba(0,191,165,0.20),
@@ -443,7 +323,6 @@ footer {
     inset 0 0 32px rgba(0,191,165,0.04);
   transition: border-color 0.4s, box-shadow 0.4s;
 }
-/* outer pulsing ring element */
 .glass::after {
   content: '';
   position: absolute; inset: -2px;
@@ -475,7 +354,6 @@ footer {
   box-shadow: 0 0 22px rgba(0,191,165,0.52), 0 0 8px rgba(14,165,233,0.30), inset 0 1px 0 rgba(255,255,255,0.12);
 }
 
-/* ── Icon badge — iOS curved-square style ── */
 .icon-badge {
   display: inline-flex; align-items: center; justify-content: center;
   width: 54px; height: 54px; border-radius: 14px;
@@ -486,12 +364,11 @@ footer {
   flex-shrink: 0;
 }
 
-/* ── Buttons ── */
 .btn-glow {
   display: inline-block; padding: 0.75rem 2rem; border-radius: 999px;
   background: linear-gradient(135deg, var(--cyan), var(--blue));
   color: #fff; font-weight: 700; font-size: 0.9rem; text-decoration: none;
-  border: none; cursor: none;
+  border: none;
   box-shadow: 0 0 20px var(--glow-sm);
   transition: box-shadow 0.3s, transform 0.2s;
 }
@@ -504,7 +381,6 @@ footer {
 }
 .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); box-shadow: 0 0 20px var(--glow-sm); transform: translateY(-2px); }
 
-/* ── Tag pill ── */
 .tag {
   display: inline-flex; align-items: center; gap: 0.3rem;
   padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600;
@@ -514,10 +390,8 @@ footer {
 }
 .tag:hover { background: rgba(0,191,165,0.2); box-shadow: 0 0 12px var(--glow-sm); }
 
-/* ── Dark devicons visible on dark bg ── */
 img.tool-icon[alt="GitHub"], img.tag-icon[alt="GitHub"] { filter: brightness(0) invert(0.85); }
 
-/* ── Fade animations ── */
 @keyframes fadeUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
 .fade-up { animation: fadeUp 0.65s ease both; }
 .d1 { animation-delay:0.1s; } .d2 { animation-delay:0.2s; }

@@ -31,11 +31,23 @@ const base = import.meta.env.BASE_URL;
         <a href={`${base}resume.pdf`} download class="btn-outline btn-resume">⬇ Resume</a>
       </div>
       <div class="hero-stats">
-        <div class="hstat"><span class="hstat-n">3.58</span><span class="hstat-l">CGPA</span></div>
+        <div class="hstat">
+          <span class="icon-badge hstat-badge">🎓</span>
+          <span class="hstat-n">3.58</span>
+          <span class="hstat-l">CGPA</span>
+        </div>
         <div class="hstat-div"></div>
-        <div class="hstat"><span class="hstat-n">6+</span><span class="hstat-l">Projects</span></div>
+        <div class="hstat">
+          <span class="icon-badge hstat-badge">📁</span>
+          <span class="hstat-n">6+</span>
+          <span class="hstat-l">Projects</span>
+        </div>
         <div class="hstat-div"></div>
-        <div class="hstat"><span class="hstat-n">2</span><span class="hstat-l">Certifications</span></div>
+        <div class="hstat">
+          <span class="icon-badge hstat-badge">🏅</span>
+          <span class="hstat-n">2</span>
+          <span class="hstat-l">Certs</span>
+        </div>
       </div>
     </div>
 
@@ -108,10 +120,11 @@ const base = import.meta.env.BASE_URL;
 .btn-resume:hover { background: rgba(0,191,165,0.08); }
 
 .hero-stats { display: flex; align-items: center; justify-content: center; gap: 1.5rem; }
-.hstat { display: flex; flex-direction: column; align-items: center; }
-.hstat-n { font-size: 1.6rem; font-weight: 800; color: var(--cyan); line-height: 1; text-shadow: 0 0 20px var(--glow); }
-.hstat-l { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
-.hstat-div { width: 1px; height: 32px; background: var(--border); }
+.hstat { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
+.hstat-badge { width: 44px; height: 44px; border-radius: 12px; font-size: 1.3rem; }
+.hstat-n { font-size: 1.5rem; font-weight: 800; color: var(--cyan); line-height: 1; text-shadow: 0 0 20px var(--glow); }
+.hstat-l { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+.hstat-div { width: 1px; height: 40px; background: var(--border); }
 
 
 /* ── Cards ── */

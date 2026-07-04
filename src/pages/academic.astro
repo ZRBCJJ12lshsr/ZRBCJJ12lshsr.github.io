@@ -4,12 +4,12 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="Academic · CJJ">
 <div class="page-section">
 
-  <h1 class="page-title fade-up">Academic History</h1>
-  <p class="page-subtitle fade-up">My educational journey</p>
+  <h1 class="page-title reveal">Academic History</h1>
+  <p class="page-subtitle reveal">My educational journey</p>
 
-  <div class="timeline fade-up delay-1">
+  <div class="timeline">
     <!-- UTeM -->
-    <div class="timeline-item current">
+    <div class="timeline-item current reveal-left">
       <div class="tl-dot"></div>
       <div class="glass tl-card">
         <span class="tl-badge current-badge">Current</span>
@@ -26,7 +26,7 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <!-- KTEPJ -->
-    <div class="timeline-item">
+    <div class="timeline-item reveal-right">
       <div class="tl-dot"></div>
       <div class="glass tl-card">
         <span class="tl-badge done-badge">Completed</span>
@@ -43,19 +43,22 @@ import Layout from '../layouts/Layout.astro';
   </div>
 
   <!-- Coursework -->
-  <h2 class="section-h2 fade-up delay-2">Relevant Coursework</h2>
-  <div class="course-grid fade-up delay-2">
+  <h2 class="section-h2 reveal-left">Relevant Coursework</h2>
+  <div class="course-grid">
     {[
-      { cat: "💻 Programming & Development", items: ["Programming Fundamentals (C++)", "Object-Oriented Programming (Java)", "Mobile Application Development (Kotlin)", "Distributed Application Development", "Web Application Development"] },
-      { cat: "🗄 Database & Systems",         items: ["Database Introduction", "Database Design", "Oracle DB Foundations (Cert.)", "Operating Systems", "Data Communication & Networking"] },
-      { cat: "🧮 Mathematics & Logic",        items: ["Linear Algebra & Matrices", "Numerical Methods", "Statistics & Probability", "Data Structures & Algorithms", "Algorithm Analysis"] },
-      { cat: "🤖 AI & Design",                items: ["Artificial Intelligence", "Human-Computer Interaction", "Interactive Media Authoring", "Geographic Information Systems"] },
-      { cat: "📋 Professional Skills",        items: ["Software Requirements & Design", "Software Verification & Validation", "Software Project Management", "IT Security", "Technology Entrepreneurship"] },
-    ].map(g => (
-      <div class="glass course-card">
-        <h3>{g.cat}</h3>
+      { emoji: "💻", title: "Programming & Development", items: ["Programming Fundamentals (C++)", "Object-Oriented Programming (Java)", "Mobile Application Development (Kotlin)", "Distributed Application Development", "Web Application Development"] },
+      { emoji: "🗄", title: "Database & Systems",         items: ["Database Introduction", "Database Design", "Oracle DB Foundations (Cert.)", "Operating Systems", "Data Communication & Networking"] },
+      { emoji: "🧮", title: "Mathematics & Logic",        items: ["Linear Algebra & Matrices", "Numerical Methods", "Statistics & Probability", "Data Structures & Algorithms", "Algorithm Analysis"] },
+      { emoji: "🤖", title: "AI & Design",                items: ["Artificial Intelligence", "Human-Computer Interaction", "Interactive Media Authoring", "Geographic Information Systems"] },
+      { emoji: "📋", title: "Professional Skills",        items: ["Software Requirements & Design", "Software Verification & Validation", "Software Project Management", "IT Security", "Technology Entrepreneurship"] },
+    ].map((g, i) => (
+      <div class={`glass course-card reveal d${(i % 4) + 1}`}>
+        <div class="cat-header">
+          <span class="icon-badge cat-icon">{g.emoji}</span>
+          <h3>{g.title}</h3>
+        </div>
         <ul>
-          {g.items.map(i => <li>{i}</li>)}
+          {g.items.map(item => <li>{item}</li>)}
         </ul>
       </div>
     ))}
@@ -71,7 +74,10 @@ import Layout from '../layouts/Layout.astro';
     width: 2px; background: linear-gradient(to bottom, var(--cyan), var(--blue));
     opacity: 0.45;
   }
-  .timeline-item { position: relative; padding-left: 52px; margin-bottom: 2rem; }
+  .timeline-item {
+    position: relative; padding-left: 52px; margin-bottom: 2rem;
+    isolation: isolate;
+  }
   .tl-dot {
     position: absolute; left: 8px; top: 24px;
     width: 16px; height: 16px; border-radius: 50%;
@@ -102,7 +108,14 @@ import Layout from '../layouts/Layout.astro';
   .section-h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 1.2rem; }
 
   .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 1.2rem; }
-  .course-card h3 { font-size: 0.9rem; font-weight: 700; color: var(--cyan); margin-bottom: 0.8rem; }
+
+  /* Category header with icon badge */
+  .cat-header {
+    display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1rem;
+  }
+  .cat-icon { width: 44px; height: 44px; border-radius: 12px; font-size: 1.4rem; flex-shrink: 0; }
+  .cat-header h3 { font-size: 0.88rem; font-weight: 700; color: var(--cyan); line-height: 1.3; }
+
   .course-card ul { list-style: none; padding: 0; }
   .course-card li {
     color: var(--muted); font-size: 0.85rem; padding: 0.25rem 0;
