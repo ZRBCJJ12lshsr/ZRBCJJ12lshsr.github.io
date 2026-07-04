@@ -4,62 +4,91 @@ import Layout from '../layouts/Layout.astro';
 const projects = [
   {
     title: "FinSave",
-    type: "Individual Project · Mobile App Development",
+    emoji: "💰",
+    type: "Individual · Mobile App Development",
     image: "",
     problem: "Tracking personal finances manually is error-prone and inconvenient for students managing limited budgets.",
     solution: "A native Android personal finance tracker built with Kotlin and Android Studio, featuring expense logging, budget management, and transaction history with SQLite local storage.",
-    tags: ["Kotlin", "Android Studio", "SQLite", "MVVM", "Material Design"],
-    role: ["Designed the app architecture using MVVM pattern", "Built UI screens following Material Design guidelines", "Implemented local SQLite database for data persistence", "Created budget tracking and expense categorisation features"],
+    tags: ["Kotlin","Android Studio","SQLite","MVVM","Material Design"],
+    tagIcons: {
+      "Kotlin": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-original.svg",
+      "Android Studio": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/androidstudio/androidstudio-original.svg",
+    },
+    role: ["Designed app architecture using MVVM pattern","Built UI screens with Material Design guidelines","Implemented SQLite database for data persistence","Created budget tracking & expense categorisation"],
     demo: "",
   },
   {
     title: "FoodSmartAI",
-    type: "Individual Project · Mobile App Development",
+    emoji: "🛒",
+    type: "Individual · Mobile App Development",
     image: "",
     problem: "Grocery shopping lacks intelligent assistance to help users plan purchases efficiently.",
-    solution: "A smart shopping feature module for Android built with MVVM architecture in Kotlin, complete with Data Flow Diagrams and technical architecture documentation.",
-    tags: ["Kotlin", "Android", "MVVM", "DFD", "Architecture Design"],
-    role: ["Architected the feature using MVVM for clean separation of concerns", "Produced Data Flow Diagrams documenting the data pipeline", "Implemented shopping list management with local persistence"],
+    solution: "A smart shopping feature module for Android using MVVM in Kotlin, with Data Flow Diagrams and full technical architecture documentation.",
+    tags: ["Kotlin","Android","MVVM","Architecture Design"],
+    tagIcons: {
+      "Kotlin": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-original.svg",
+    },
+    role: ["Architected feature using MVVM for clean separation of concerns","Produced Data Flow Diagrams documenting the data pipeline","Implemented shopping list management with local persistence"],
     demo: "",
   },
   {
     title: "Save The Princess!",
-    type: "Individual Project · Workshop I",
+    emoji: "🎮",
+    type: "Individual · Workshop I",
     image: "https://i.imgur.com/64g05Ih.jpg",
     problem: "Many beginner-level games lack structured gameplay progression and proper data management.",
-    solution: "A turn-based C++ mini-game where players control a knight to defeat enemies and rescue a princess, with player registration, turn-based combat, multiple stages, a gear/stat system, and game progress stored in a database.",
-    tags: ["C++", "MySQL", "SQL", "OOP", "Console UI"],
-    role: ["Designed the overall game concept and storyline", "Implemented combat mechanics and game logic", "Designed and managed the database schema", "Integrated gameplay with database operations"],
+    solution: "A turn-based C++ mini-game where a knight defeats enemies to rescue a princess, with player login, combat mechanics, multiple stages, a gear/stat system, and a MySQL database.",
+    tags: ["C++","MySQL","OOP","Console UI"],
+    tagIcons: {
+      "C++": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg",
+      "MySQL": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
+    },
+    role: ["Designed game concept & storyline","Implemented combat mechanics & game logic","Designed & managed the MySQL database schema","Integrated gameplay with database operations"],
     demo: "",
   },
   {
-    title: "EventGo – University Activities Registration System",
-    type: "Group Project (6 members) · Distributed Application Development",
+    title: "EventGo",
+    emoji: "📅",
+    type: "Group Project (6 members) · Distributed App Development",
     image: "https://i.imgur.com/WD0zOv5.jpg",
-    problem: "Manual management of university activities causes inefficient registration, poor attendance tracking, and lack of real-time data.",
-    solution: "A Java-based management system enabling administrators to publish activities, track attendance via QR codes, and analyse participation statistics.",
-    tags: ["Java", "Java Swing", "Firebase", "GitHub", "QR Code"],
-    role: ["Frontend developer for the admin interface", "Designed and implemented 5 Java Swing pages", "Activity Publishing & QR Code Display module", "Attendance Statistics & Backend API integration", "Collaborated using GitHub for version control"],
+    problem: "Manual university activity management causes inefficient registration, poor attendance tracking, and no real-time data.",
+    solution: "A Java-based system enabling admins to publish activities, track QR-code attendance, and analyse participation statistics.",
+    tags: ["Java","Java Swing","Firebase","GitHub","QR Code"],
+    tagIcons: {
+      "Java": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
+      "Firebase": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg",
+      "GitHub": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",
+    },
+    role: ["Frontend developer for admin interface","Designed & implemented 5 Java Swing pages","Activity Publishing & QR Code Display module","Attendance Statistics & Backend API integration"],
     demo: "https://youtu.be/GUtQEokDrrk",
   },
   {
-    title: "Mushroom Identifier System",
-    type: "Individual Project · Artificial Intelligence",
+    title: "Mushroom Identifier",
+    emoji: "🍄",
+    type: "Individual · Artificial Intelligence",
     image: "https://i.imgur.com/z3t59vK.jpg",
-    problem: "Many people cannot identify whether a mushroom is safe to consume, posing health risks.",
-    solution: "A mushroom identification system where users upload an image and receive the predicted species, confidence level, and safety advice with a user-friendly GUI.",
-    tags: ["Python", "TensorFlow", "NumPy", "Pillow", "Tkinter", "Anaconda"],
-    role: ["Designed the application workflow", "Built the GUI for image input and result display", "Integrated the machine learning model", "Managed Python environment and dependencies"],
+    problem: "People struggle to identify whether a mushroom is safe to consume, posing health risks.",
+    solution: "An AI image classifier — users upload a photo and receive the predicted species, confidence level, and safety advice via a GUI.",
+    tags: ["Python","TensorFlow","Tkinter","NumPy","Anaconda"],
+    tagIcons: {
+      "Python": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
+      "TensorFlow": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg",
+    },
+    role: ["Designed the application workflow","Built the Tkinter GUI for image input & result display","Integrated the ML classification model","Managed Python environment & dependencies"],
     demo: "",
   },
   {
     title: "Parking Management System",
-    type: "Group Project · Object-Oriented Programming",
+    emoji: "🅿",
+    type: "Group Project · OOP",
     image: "https://i.imgur.com/RztL4mb.jpg",
-    problem: "Manual parking ticket systems are inefficient and error-prone in duration calculation and payment handling.",
-    solution: "A parking management system handling car and motorcycle entries, ticket printing, duration calculation, and fees at RM2/hour.",
-    tags: ["Java", "OOP", "Console-based"],
-    role: ["Implemented parking logic and fee calculation", "Designed the ticket workflow", "Assisted in debugging and testing"],
+    problem: "Manual parking ticket systems are error-prone in duration calculation and payment handling.",
+    solution: "A Java OOP console application handling car & motorcycle entries, ticket printing, duration calculation, and fees at RM2/hour.",
+    tags: ["Java","OOP","Console"],
+    tagIcons: {
+      "Java": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
+    },
+    role: ["Implemented parking logic & fee calculation","Designed the ticket workflow","Debugging & testing"],
     demo: "https://youtu.be/4vjkTe2JH_4",
   },
 ];
@@ -70,42 +99,52 @@ const projects = [
   <h1 class="page-title fade-up">Projects</h1>
   <p class="page-subtitle fade-up">Things I've built</p>
 
-  <div class="projects-list">
+  <div class="projects-grid">
     {projects.map((p, i) => (
-      <div class={`glass project-card fade-up delay-${(i % 4) + 1}`}>
-        {p.image && <img src={p.image} alt={p.title} class="proj-img" />}
+      <article class={`glass proj-card reveal ${i % 2 === 0 ? 'reveal-left' : 'reveal-right'}`}>
+        {p.image
+          ? <img src={p.image} alt={p.title} class="proj-img" />
+          : <div class="proj-img-placeholder"><span>{p.emoji}</span></div>
+        }
         <div class="proj-body">
-          <div class="proj-top">
+          <div class="proj-header">
             <div>
-              <h2 class="proj-title">{p.title}</h2>
+              <h2 class="proj-title">{p.emoji} {p.title}</h2>
               <p class="proj-type">{p.type}</p>
             </div>
             {p.demo && (
-              <a href={p.demo} target="_blank" rel="noopener" class="demo-btn">▶ Demo</a>
+              <a href={p.demo} target="_blank" rel="noopener" class="demo-pill">
+                ▶ Demo
+              </a>
             )}
           </div>
 
-          <div class="proj-section">
-            <h3>Problem</h3>
-            <p>{p.problem}</p>
-          </div>
-          <div class="proj-section">
-            <h3>Solution</h3>
-            <p>{p.solution}</p>
+          <div class="proj-sections">
+            <div class="proj-block">
+              <h4>Problem</h4><p>{p.problem}</p>
+            </div>
+            <div class="proj-block">
+              <h4>Solution</h4><p>{p.solution}</p>
+            </div>
           </div>
 
           <div class="tags-row">
-            {p.tags.map(t => <span class="tag">{t}</span>)}
+            {p.tags.map(t => (
+              <span class="tag">
+                {p.tagIcons[t] && <img src={p.tagIcons[t]} alt="" class="tag-icon" />}
+                {t}
+              </span>
+            ))}
           </div>
 
-          <div class="proj-section">
-            <h3>My Role</h3>
-            <ul>
+          <div class="proj-block">
+            <h4>My Role</h4>
+            <ul class="role-list">
               {p.role.map(r => <li>{r}</li>)}
             </ul>
           </div>
         </div>
-      </div>
+      </article>
     ))}
   </div>
 
@@ -113,29 +152,52 @@ const projects = [
 </Layout>
 
 <style>
-  .projects-list { display: flex; flex-direction: column; gap: 2rem; }
+.projects-grid { display: flex; flex-direction: column; gap: 2rem; }
 
-  .project-card { overflow: hidden; }
-  .proj-img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 1.2rem; }
+.proj-card {
+  overflow: hidden; padding: 0;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.proj-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 50px var(--glow-sm), 0 20px 60px rgba(0,0,0,0.5);
+  border-color: var(--cyan);
+}
 
-  .proj-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
-  .proj-title { font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.2rem; }
-  .proj-type  { font-size: 0.8rem; color: var(--accent); font-weight: 500; }
+.proj-img { width: 100%; height: 220px; object-fit: cover; display: block; }
+.proj-img-placeholder {
+  width: 100%; height: 120px; display: flex; align-items: center; justify-content: center;
+  background: rgba(0,191,165,0.06); font-size: 3.5rem; border-bottom: 1px solid var(--border);
+}
 
-  .demo-btn {
-    padding: 0.4rem 1.2rem; border-radius: 999px; text-decoration: none;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: #fff; font-size: 0.82rem; font-weight: 700; flex-shrink: 0;
-    transition: opacity 0.2s, transform 0.2s;
-  }
-  .demo-btn:hover { opacity: 0.85; transform: translateY(-2px); }
+.proj-body { padding: 1.6rem; }
 
-  .proj-section { margin-bottom: 0.9rem; }
-  .proj-section h3 { font-size: 0.78rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem; }
-  .proj-section p  { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
-  .proj-section ul { list-style: none; padding: 0; }
-  .proj-section li { font-size: 0.88rem; color: var(--muted); padding: 0.15rem 0; }
-  .proj-section li::before { content: "▸ "; color: var(--accent); }
+.proj-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
+.proj-title  { font-size: 1.25rem; font-weight: 800; color: #fff; margin-bottom: 0.2rem; }
+.proj-type   { font-size: 0.78rem; color: var(--cyan); font-weight: 500; }
 
-  .tags-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem; }
+.demo-pill {
+  display: inline-block; padding: 0.35rem 1rem; border-radius: 999px;
+  background: linear-gradient(135deg, var(--cyan), var(--blue));
+  color: #fff; font-size: 0.8rem; font-weight: 700; text-decoration: none; flex-shrink: 0;
+  box-shadow: 0 0 16px var(--glow-sm);
+  transition: box-shadow 0.25s, transform 0.2s;
+}
+.demo-pill:hover { box-shadow: 0 0 32px var(--glow); transform: translateY(-2px); }
+
+.proj-sections { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+@media (max-width: 560px) { .proj-sections { grid-template-columns: 1fr; } }
+
+.proj-block h4 {
+  font-size: 0.72rem; font-weight: 700; color: var(--cyan);
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.4rem;
+}
+.proj-block p  { font-size: 0.86rem; color: var(--muted); line-height: 1.65; }
+
+.tags-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+.tag-icon { width: 14px; height: 14px; object-fit: contain; }
+
+.role-list { list-style: none; padding: 0; }
+.role-list li { font-size: 0.85rem; color: var(--muted); padding: 0.2rem 0; }
+.role-list li::before { content: "▸ "; color: var(--cyan); }
 </style>

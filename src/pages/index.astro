@@ -6,7 +6,7 @@ const base = import.meta.env.BASE_URL;
 
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-bg">
+    <div class="hero-video-wrap">
       <video autoplay muted loop playsinline class="hero-video">
         <source src="https://cdn.coverr.co/videos/coverr-purple-and-pink-abstract-background-9601/1080p.mp4" type="video/mp4" />
       </video>
@@ -14,114 +14,136 @@ const base = import.meta.env.BASE_URL;
     </div>
 
     <div class="hero-content fade-up">
-      <p class="hero-eyebrow">Hello, I'm</p>
-      <h1 class="hero-name">CHAI JIAN JIE</h1>
-      <p class="hero-handle">@CJJ</p>
-      <p class="hero-sub">
-        Software Development Student at<br/>
-        <span class="hero-uni">Universiti Teknikal Malaysia Melaka (UTeM)</span>
+      <div class="hero-chip">👋 Available for Internship · 2026</div>
+      <h1 class="hero-name">CHAI<br/><span class="name-accent">JIAN JIE</span></h1>
+      <p class="hero-role">
+        Software Development Student
+        <span class="role-sep">·</span>
+        <span class="role-uni">UTeM</span>
+      </p>
+      <p class="hero-desc">
+        Building mobile apps, distributed systems & web applications.<br/>
+        Passionate about clean code and user-centered design.
       </p>
       <div class="hero-cta">
-        <a href={`${base}projects`} class="btn-primary">View Projects</a>
-        <a href={`${base}contact`} class="btn-ghost">Contact Me</a>
+        <a href={`${base}projects`} class="btn-glow">View Projects</a>
+        <a href={`${base}contact`} class="btn-outline">Contact Me</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><span class="hstat-n">3.58</span><span class="hstat-l">CGPA</span></div>
+        <div class="hstat-div"></div>
+        <div class="hstat"><span class="hstat-n">6+</span><span class="hstat-l">Projects</span></div>
+        <div class="hstat-div"></div>
+        <div class="hstat"><span class="hstat-n">2</span><span class="hstat-l">Certifications</span></div>
       </div>
     </div>
 
-    <div class="hero-scroll">↓</div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
   </section>
 
   <!-- Quick cards -->
   <section class="cards-section">
     <div class="cards-grid">
-      <div class="quick-card glass fade-up delay-1">
-        <div class="qc-icon">👤</div>
-        <h3>About Me</h3>
-        <p>Student from Perak, now in KL. Love gaming, badminton, and teamwork.</p>
-        <a href={`${base}about`}>Learn more →</a>
-      </div>
-      <div class="quick-card glass fade-up delay-2">
-        <div class="qc-icon">⚡</div>
-        <h3>Skills</h3>
-        <p>Java, Kotlin, C++, JavaScript, PHP, SQL. Problem solver and fast learner.</p>
-        <a href={`${base}skills`}>View skills →</a>
-      </div>
-      <div class="quick-card glass fade-up delay-3">
-        <div class="qc-icon">🗂</div>
-        <h3>Projects</h3>
-        <p>Mobile apps, distributed systems, databases, and AI applications.</p>
-        <a href={`${base}projects`}>See projects →</a>
-      </div>
+      {[
+        { icon: "👤", title: "About Me",  desc: "From Perak, now in KL. Love gaming, badminton & building things.", href: `${base}about`,    cta: "Learn more" },
+        { icon: "⚡", title: "Skills",    desc: "Java, Kotlin, C++, JS, PHP, SQL — and growing.", href: `${base}skills`,   cta: "View skills" },
+        { icon: "🗂", title: "Projects",  desc: "Mobile apps, distributed systems, AI & databases.", href: `${base}projects`, cta: "See projects" },
+        { icon: "📄", title: "Academic",  desc: "Year 3 at UTeM — Oracle certified, GIS certified.", href: `${base}academic`, cta: "See history" },
+      ].map(c => (
+        <a href={c.href} class="quick-card glass reveal">
+          <div class="qc-icon">{c.icon}</div>
+          <h3>{c.title}</h3>
+          <p>{c.desc}</p>
+          <span class="qc-cta">{c.cta} →</span>
+        </a>
+      ))}
     </div>
   </section>
 
 </Layout>
 
 <style>
-  /* ── Hero ── */
-  .hero {
-    position: relative; height: 100vh; min-height: 600px;
-    display: flex; align-items: center; justify-content: center;
-    overflow: hidden;
-  }
-  .hero-bg { position: absolute; inset: 0; z-index: 0; }
-  .hero-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.35; }
-  .hero-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to bottom, rgba(10,10,20,0.4) 0%, rgba(10,10,20,0.85) 100%);
-  }
+/* ── Hero ── */
+.hero {
+  position: relative; height: 100svh; min-height: 640px;
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.hero-video-wrap { position: absolute; inset: 0; z-index: 0; }
+.hero-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.25; }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(5,13,21,0.55) 0%, rgba(5,13,21,0.92) 100%);
+}
 
-  .hero-content {
-    position: relative; z-index: 1; text-align: center; padding: 2rem;
-  }
-  .hero-eyebrow {
-    color: var(--muted); font-size: 0.95rem; letter-spacing: 3px;
-    text-transform: uppercase; margin-bottom: 0.5rem;
-  }
-  .hero-name {
-    font-size: clamp(2.5rem, 8vw, 5.5rem); font-weight: 800; letter-spacing: 4px;
-    background: linear-gradient(135deg, #fff 30%, var(--accent) 70%, var(--accent2) 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    line-height: 1.1; margin-bottom: 0.4rem;
-  }
-  .hero-handle {
-    color: var(--accent); font-size: 1rem; letter-spacing: 4px;
-    text-transform: uppercase; margin-bottom: 1.2rem;
-  }
-  .hero-sub { color: var(--muted); font-size: 1rem; line-height: 1.7; margin-bottom: 2rem; }
-  .hero-uni { color: var(--teal); font-weight: 600; }
+.hero-content { position: relative; z-index: 1; text-align: center; padding: 2rem; max-width: 700px; }
 
-  .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-  .btn-primary {
-    padding: 0.75rem 2rem; border-radius: 999px; text-decoration: none;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: #fff; font-weight: 600; font-size: 0.9rem;
-    transition: opacity 0.2s, transform 0.2s;
-  }
-  .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
-  .btn-ghost {
-    padding: 0.75rem 2rem; border-radius: 999px; text-decoration: none;
-    border: 1px solid var(--border); color: var(--text); font-weight: 600; font-size: 0.9rem;
-    backdrop-filter: blur(8px); transition: background 0.2s, transform 0.2s;
-  }
-  .btn-ghost:hover { background: var(--card); transform: translateY(-2px); }
+.hero-chip {
+  display: inline-block; padding: 0.35rem 1.1rem; border-radius: 999px;
+  border: 1px solid var(--border); color: var(--cyan); font-size: 0.8rem; font-weight: 600;
+  background: rgba(0,191,165,0.08); margin-bottom: 1.5rem;
+  box-shadow: 0 0 16px var(--glow-sm);
+}
 
-  .hero-scroll {
-    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-    color: var(--muted); font-size: 1.2rem; animation: bounce 2s infinite; z-index: 1;
-  }
-  @keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50%       { transform: translateX(-50%) translateY(8px); }
-  }
+.hero-name {
+  font-size: clamp(3rem, 10vw, 6.5rem); font-weight: 800; line-height: 1;
+  letter-spacing: 4px; color: #fff; margin-bottom: 0.6rem;
+  text-shadow: 0 0 60px rgba(0,191,165,0.15);
+}
+.name-accent {
+  background: linear-gradient(135deg, var(--cyan) 0%, var(--blue) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  filter: drop-shadow(0 0 20px var(--glow));
+}
 
-  /* ── Cards ── */
-  .cards-section { max-width: 960px; margin: 0 auto; padding: 4rem 2rem; }
-  .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
-  .quick-card { transition: transform 0.25s, box-shadow 0.25s; }
-  .quick-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(167,139,250,0.15); }
-  .qc-icon { font-size: 2rem; margin-bottom: 0.75rem; }
-  .quick-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; color: #fff; }
-  .quick-card p  { color: var(--muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem; }
-  .quick-card a  { color: var(--accent); font-size: 0.88rem; font-weight: 600; text-decoration: none; }
-  .quick-card a:hover { text-decoration: underline; }
+.hero-role {
+  font-size: 1rem; color: var(--muted); letter-spacing: 2px; margin-bottom: 1rem;
+}
+.role-sep { margin: 0 0.5rem; }
+.role-uni { color: var(--cyan); font-weight: 600; }
+
+.hero-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.75; margin-bottom: 2rem; }
+
+.hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem; }
+
+.hero-stats { display: flex; align-items: center; justify-content: center; gap: 1.5rem; }
+.hstat { display: flex; flex-direction: column; align-items: center; }
+.hstat-n { font-size: 1.6rem; font-weight: 800; color: var(--cyan); line-height: 1; text-shadow: 0 0 20px var(--glow); }
+.hstat-l { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+.hstat-div { width: 1px; height: 32px; background: var(--border); }
+
+.scroll-hint {
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem; z-index: 1;
+}
+.scroll-hint span { font-size: 0.72rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+.scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--cyan), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
+
+/* ── Cards ── */
+.cards-section { max-width: 960px; margin: 0 auto; padding: 5rem 2rem; }
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem; }
+
+.quick-card {
+  display: flex; flex-direction: column; text-decoration: none; color: inherit;
+  cursor: pointer; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.quick-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 40px var(--glow-sm), 0 20px 40px rgba(0,0,0,0.4);
+  border-color: var(--cyan);
+}
+.qc-icon { font-size: 2.2rem; margin-bottom: 0.8rem; }
+.quick-card h3 { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
+.quick-card p  { font-size: 0.86rem; color: var(--muted); line-height: 1.6; flex: 1; margin-bottom: 1rem; }
+.qc-cta { font-size: 0.82rem; font-weight: 700; color: var(--cyan); }
 </style>

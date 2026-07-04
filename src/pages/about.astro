@@ -5,103 +5,103 @@ const base = import.meta.env.BASE_URL;
 <Layout title="About · CJJ">
 <div class="page-section">
 
-  <div class="about-header fade-up">
-    <img src="https://i.imgur.com/vsGYZ31.jpg" alt="Chai Jian Jie" class="avatar" />
-    <div>
-      <h1 class="page-title">Chai Jian Jie</h1>
-      <p class="hero-handle">@CJJ</p>
-      <div class="stat-row">
-        <div class="stat"><span class="stat-label">Username</span><span class="stat-val">CJJ</span></div>
-        <div class="stat"><span class="stat-label">Age</span><span class="stat-val">22</span></div>
-        <div class="stat"><span class="stat-label">Date of Birth</span><span class="stat-val">4 Jan 2003</span></div>
-        <div class="stat"><span class="stat-label">Born in</span><span class="stat-val">Perak, Malaysia</span></div>
+  <div class="about-hero reveal">
+    <div class="avatar-wrap">
+      <img src="https://i.imgur.com/vsGYZ31.jpg" alt="Chai Jian Jie" class="avatar" />
+      <div class="avatar-glow"></div>
+    </div>
+    <div class="about-intro">
+      <h1 class="page-title" style="margin-bottom:0.2rem">Chai Jian Jie</h1>
+      <p class="handle">@CJJ · Software Development Student</p>
+      <div class="stat-chips">
+        <span class="stat-chip">📍 Kuala Lumpur</span>
+        <span class="stat-chip">🎂 4 Jan 2003</span>
+        <span class="stat-chip">🎓 UTeM</span>
+        <span class="stat-chip">🏆 CGPA 3.58</span>
       </div>
     </div>
   </div>
 
-  <div class="glass fade-up delay-1 about-bio">
-    <h2>Who Am I?</h2>
-    <p>
-      I'm a Software Development student at Universiti Teknikal Malaysia Melaka (UTeM),
-      passionate about building software solutions that make a difference.
-    </p>
-    <p>
-      Originally from Perak, I'm currently living in Kuala Lumpur and studying in Melaka.
-      My journey in technology started with curiosity about how things work, and it has evolved
-      into a passion for creating innovative solutions.
-    </p>
-    <p>
-      I enjoy the challenge of transforming complex problems into elegant, user-friendly
-      applications. Whether it's developing mobile apps, distributed systems, or exploring AI
-      applications, I approach each project with enthusiasm and dedication to learning.
-    </p>
+  <div class="glass bio-card reveal-left">
+    <h2 class="card-title">Who Am I?</h2>
+    <p>I'm a Software Development student at Universiti Teknikal Malaysia Melaka (UTeM), passionate about building software solutions that make a difference.</p>
+    <p>Originally from Perak, I'm currently living in Kuala Lumpur and studying in Melaka. My journey in technology started with curiosity about how things work, and it has evolved into a passion for creating innovative solutions.</p>
+    <p>I enjoy the challenge of transforming complex problems into elegant, user-friendly applications — whether that's developing mobile apps, building distributed systems, or exploring AI.</p>
   </div>
 
-  <h2 class="section-h2 fade-up delay-2">Interests & Hobbies</h2>
-  <div class="hobby-grid fade-up delay-2">
-    <div class="glass hobby-card">
-      <div class="hobby-icon">🎮</div>
-      <h3>Gaming</h3>
-      <p>Strategy and adventure games fuel my problem-solving mindset</p>
-    </div>
-    <div class="glass hobby-card">
-      <div class="hobby-icon">🏸</div>
-      <h3>Badminton</h3>
-      <p>Staying active and competitive on the court</p>
-    </div>
-    <div class="glass hobby-card">
-      <div class="hobby-icon">🤝</div>
-      <h3>Collaboration</h3>
-      <p>Working with teams to achieve common goals</p>
-    </div>
-    <div class="glass hobby-card">
-      <div class="hobby-icon">📚</div>
-      <h3>Continuous Learning</h3>
-      <p>Always exploring new technologies and methodologies</p>
-    </div>
+  <h2 class="section-h2 reveal-left">Interests & Hobbies</h2>
+  <div class="hobby-grid">
+    {[
+      { icon: "🎮", title: "Gaming",             desc: "Strategy & adventure games fuel my problem-solving mindset" },
+      { icon: "🏸", title: "Badminton",           desc: "Staying active and competitive on the court" },
+      { icon: "🤝", title: "Collaboration",        desc: "Working with teams to achieve common goals" },
+      { icon: "🤖", title: "AI & Tech",            desc: "Exploring AI tools and emerging technologies" },
+      { icon: "📚", title: "Continuous Learning",  desc: "Always picking up new frameworks and methodologies" },
+      { icon: "♟",  title: "Logic & Strategy",     desc: "Board games and puzzles to keep the mind sharp" },
+    ].map((h, i) => (
+      <div class={`glass hobby-card reveal d${(i%4)+1}`}>
+        <span class="hobby-icon">{h.icon}</span>
+        <h3>{h.title}</h3>
+        <p>{h.desc}</p>
+      </div>
+    ))}
   </div>
 
-  <div class="glass fade-up delay-3 looking-forward">
-    <h2>Looking Forward</h2>
-    <p>
-      I'm eager to apply my skills in real-world scenarios through internships and collaborative
-      projects. My goal is to work on meaningful projects that challenge me to grow as a developer
-      while contributing value to teams and organizations. I'm particularly interested in
-      full-stack development, mobile app development, and AI applications.
-    </p>
+  <div class="glass goal-card reveal">
+    <h2 class="card-title">Looking Forward 🚀</h2>
+    <p>I'm eager to apply my skills through internships and collaborative projects. My goal is to work on meaningful software that challenges me to grow — particularly in full-stack development, mobile apps, and AI-driven applications.</p>
+    <div class="goal-btns">
+      <a href={`${base}projects`} class="btn-glow">See my work</a>
+      <a href={`${base}contact`} class="btn-outline">Get in touch</a>
+    </div>
   </div>
 
 </div>
 </Layout>
 
 <style>
-  .about-header {
-    display: flex; gap: 2.5rem; align-items: flex-start; margin-bottom: 2.5rem;
-    flex-wrap: wrap;
-  }
-  .avatar {
-    width: 140px; height: 140px; border-radius: 50%; object-fit: cover;
-    border: 3px solid var(--accent); flex-shrink: 0;
-  }
-  .hero-handle { color: var(--accent); letter-spacing: 3px; font-size: 0.85rem; margin-bottom: 1rem; }
-  .stat-row { display: flex; flex-wrap: wrap; gap: 1rem; }
-  .stat { display: flex; flex-direction: column; gap: 2px; }
-  .stat-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
-  .stat-val { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+.about-hero {
+  display: flex; gap: 2.5rem; align-items: center;
+  margin-bottom: 2.5rem; flex-wrap: wrap;
+}
+.avatar-wrap { position: relative; flex-shrink: 0; }
+.avatar {
+  width: 150px; height: 150px; border-radius: 50%; object-fit: cover;
+  border: 3px solid var(--cyan); position: relative; z-index: 1;
+  box-shadow: 0 0 0 6px rgba(0,191,165,0.12);
+}
+.avatar-glow {
+  position: absolute; inset: -12px; border-radius: 50%;
+  background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
 
-  .about-bio { margin-bottom: 2.5rem; }
-  .about-bio h2 { font-size: 1.3rem; font-weight: 700; color: var(--accent); margin-bottom: 1rem; }
-  .about-bio p  { color: var(--muted); line-height: 1.8; margin-bottom: 0.8rem; }
+.handle { color: var(--cyan); font-size: 0.88rem; letter-spacing: 2px; margin-bottom: 1rem; }
+.stat-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.stat-chip {
+  padding: 0.3rem 0.9rem; border-radius: 999px; font-size: 0.8rem; font-weight: 500;
+  background: rgba(0,191,165,0.08); border: 1px solid var(--border); color: var(--text);
+}
 
-  .section-h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 1.2rem; }
+.bio-card { margin-bottom: 2.5rem; }
+.card-title { font-size: 1.2rem; font-weight: 700; color: var(--cyan); margin-bottom: 1rem; }
+.bio-card p { color: var(--muted); line-height: 1.8; margin-bottom: 0.8rem; }
+.bio-card p:last-child { margin-bottom: 0; }
 
-  .hobby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1.2rem; margin-bottom: 2.5rem; }
-  .hobby-card { text-align: center; transition: transform 0.2s; }
-  .hobby-card:hover { transform: translateY(-4px); }
-  .hobby-icon { font-size: 2.2rem; margin-bottom: 0.6rem; }
-  .hobby-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; color: #fff; }
-  .hobby-card p  { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+.hobby-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 1.1rem; margin-bottom: 2.5rem;
+}
+.hobby-card { text-align: center; transition: transform 0.25s; }
+.hobby-card:hover { transform: translateY(-5px); }
+.hobby-icon { font-size: 2rem; display: block; margin-bottom: 0.6rem; }
+.hobby-card h3 { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem; }
+.hobby-card p  { font-size: 0.83rem; color: var(--muted); line-height: 1.5; }
 
-  .looking-forward h2 { font-size: 1.3rem; font-weight: 700; color: var(--accent); margin-bottom: 1rem; }
-  .looking-forward p  { color: var(--muted); line-height: 1.8; }
+.goal-card p { color: var(--muted); line-height: 1.8; margin-bottom: 1.5rem; }
+.goal-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
 </style>

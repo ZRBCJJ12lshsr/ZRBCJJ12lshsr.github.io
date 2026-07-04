@@ -2,29 +2,38 @@
 import Layout from '../layouts/Layout.astro';
 
 const languages = [
-  { name: "Java", level: "Advanced",     pct: 90 },
-  { name: "Kotlin", level: "Advanced",   pct: 88 },
-  { name: "C++", level: "Advanced",      pct: 78 },
-  { name: "JavaScript", level: "Intermediate", pct: 78 },
-  { name: "PHP", level: "Intermediate",  pct: 72 },
-  { name: "SQL", level: "Advanced",      pct: 85 },
-  { name: "HTML / CSS", level: "Intermediate", pct: 80 },
-  { name: "C", level: "Intermediate",    pct: 65 },
+  { name: "Java",             level: 90, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" },
+  { name: "Kotlin",           level: 88, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-original.svg" },
+  { name: "SQL",              level: 85, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" },
+  { name: "JavaScript",       level: 78, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" },
+  { name: "HTML / CSS",       level: 80, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" },
+  { name: "PHP",              level: 72, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" },
+  { name: "C++",              level: 78, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" },
+  { name: "Python",           level: 65, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" },
 ];
 
 const tools = [
-  "Android Studio", "MySQL", "Oracle APEX", "Apache Tomcat",
-  "VS Code", "GitHub", "jQuery", "Oracle SQL Developer",
-  "ArcGIS / Esri", "Firebase", "TensorFlow", "Anaconda"
+  { name: "Android Studio", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/androidstudio/androidstudio-original.svg" },
+  { name: "MySQL",          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" },
+  { name: "Git",            icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" },
+  { name: "GitHub",         icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" },
+  { name: "VS Code",        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" },
+  { name: "Firebase",       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg" },
+  { name: "TensorFlow",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg" },
+  { name: "Anaconda",       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/anaconda/anaconda-original.svg" },
+  { name: "Apache Tomcat",  icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tomcat/tomcat-original.svg" },
+  { name: "Oracle",         icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/oracle/oracle-original.svg" },
+  { name: "Linux",          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg" },
+  { name: "Figma",          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" },
 ];
 
 const qualities = [
-  { icon: "🤝", name: "Team Player",    desc: "Thrives in collaborative environments, values shared success." },
-  { icon: "🧭", name: "Leadership",     desc: "Takes initiative in guiding projects and teams." },
-  { icon: "🔍", name: "Problem Solver", desc: "Analytical thinker who enjoys tackling complex challenges." },
-  { icon: "✅", name: "Responsible",    desc: "Reliable and accountable, consistently delivers on commitments." },
-  { icon: "⚡", name: "Fast Learner",   desc: "Quickly adapts to new technologies and methodologies." },
-  { icon: "💡", name: "Creative",       desc: "Approaches design and development with an eye for quality UX." },
+  { icon: "🤝", name: "Team Player",     desc: "Thrives in collaborative environments, values shared success." },
+  { icon: "🧭", name: "Leadership",      desc: "Takes initiative in guiding projects and teams." },
+  { icon: "🔍", name: "Problem Solver",  desc: "Analytical thinker who enjoys tackling complex challenges." },
+  { icon: "✅", name: "Responsible",     desc: "Reliable and accountable, consistently delivers on commitments." },
+  { icon: "⚡", name: "Fast Learner",    desc: "Quickly adapts to new technologies and methodologies." },
+  { icon: "🎨", name: "Creative",        desc: "Approaches design and development with an eye for quality UX." },
 ];
 ---
 <Layout title="Skills · CJJ">
@@ -33,51 +42,59 @@ const qualities = [
   <h1 class="page-title fade-up">Skills & Qualities</h1>
   <p class="page-subtitle fade-up">What I bring to the table</p>
 
-  <!-- Certifications banner -->
-  <div class="certs-row fade-up">
+  <!-- Cert badges -->
+  <div class="certs-row reveal">
     <div class="glass cert-chip">
       <span class="cert-icon">🏅</span>
       <div>
-        <p class="cert-title">Oracle DB Foundations – Junior Associate</p>
-        <p class="cert-sub">September 2025</p>
+        <p class="cert-title">Oracle Database Foundations — Junior Associate</p>
+        <p class="cert-sub">September 2025 · Oracle Academy</p>
       </div>
     </div>
     <div class="glass cert-chip">
       <span class="cert-icon">🗺</span>
       <div>
-        <p class="cert-title">GIS Basics Certificate – Esri Training</p>
-        <p class="cert-sub">March 2026</p>
+        <p class="cert-title">GIS Basics Certificate — Esri Training</p>
+        <p class="cert-sub">March 2026 · Esri</p>
       </div>
     </div>
   </div>
 
-  <!-- Languages with bars -->
-  <h2 class="section-h2 fade-up delay-1">Programming Languages</h2>
-  <div class="glass skill-bars fade-up delay-1">
+  <!-- Language skill bars -->
+  <h2 class="section-h2 reveal-left">💻 Programming Languages</h2>
+  <div class="glass skill-bars reveal">
     {languages.map(l => (
       <div class="skill-row">
         <div class="skill-meta">
-          <span class="skill-name">{l.name}</span>
-          <span class="skill-level">{l.level}</span>
+          <span class="skill-label">
+            <img src={l.icon} alt={l.name} class="skill-icon" />
+            {l.name}
+          </span>
+          <span class="skill-pct">{l.level}%</span>
         </div>
         <div class="bar-track">
-          <div class="bar-fill" style={`width: ${l.pct}%`}></div>
+          <div class="bar-fill" style={`--w: ${l.level}%`}></div>
         </div>
       </div>
     ))}
   </div>
 
-  <!-- Tools -->
-  <h2 class="section-h2 fade-up delay-2">Tools & Technologies</h2>
-  <div class="tools-wrap fade-up delay-2">
-    {tools.map(t => <span class="tag">{t}</span>)}
+  <!-- Tools with logos -->
+  <h2 class="section-h2 reveal-left">🛠 Tools & Technologies</h2>
+  <div class="tools-grid reveal">
+    {tools.map(t => (
+      <div class="tool-chip glass">
+        <img src={t.icon} alt={t.name} class="tool-icon" />
+        <span>{t.name}</span>
+      </div>
+    ))}
   </div>
 
   <!-- Qualities -->
-  <h2 class="section-h2 fade-up delay-3">Personal Qualities</h2>
-  <div class="qualities-grid fade-up delay-3">
-    {qualities.map(q => (
-      <div class="glass quality-card">
+  <h2 class="section-h2 reveal-left">✨ Personal Qualities</h2>
+  <div class="qualities-grid">
+    {qualities.map((q, i) => (
+      <div class={`glass quality-card reveal d${i + 1}`}>
         <span class="q-icon">{q.icon}</span>
         <h3>{q.name}</h3>
         <p>{q.desc}</p>
@@ -89,36 +106,53 @@ const qualities = [
 </Layout>
 
 <style>
-  .certs-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
-  .cert-chip { display: flex; align-items: center; gap: 1rem; flex: 1; min-width: 260px; }
-  .cert-icon { font-size: 2rem; flex-shrink: 0; }
-  .cert-title { font-size: 0.9rem; font-weight: 600; color: #fff; }
-  .cert-sub   { font-size: 0.78rem; color: var(--accent); margin-top: 2px; }
+/* Certs */
+.certs-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.cert-chip { display: flex; align-items: center; gap: 1rem; flex: 1; min-width: 260px; }
+.cert-icon { font-size: 2rem; flex-shrink: 0; }
+.cert-title { font-size: 0.88rem; font-weight: 600; color: #fff; }
+.cert-sub   { font-size: 0.75rem; color: var(--cyan); margin-top: 3px; }
 
-  .section-h2 { font-size: 1.4rem; font-weight: 700; color: #fff; margin: 2rem 0 1rem; }
+/* Skill bars */
+.skill-bars { margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 1.2rem; }
+.skill-row  { display: flex; flex-direction: column; gap: 6px; }
+.skill-meta { display: flex; justify-content: space-between; align-items: center; }
+.skill-label { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 600; color: var(--text); }
+.skill-icon  { width: 20px; height: 20px; object-fit: contain; }
+.skill-pct   { font-size: 0.78rem; color: var(--cyan); font-weight: 600; }
+.bar-track   { height: 7px; background: rgba(255,255,255,0.07); border-radius: 999px; overflow: hidden; }
+.bar-fill {
+  height: 100%; width: var(--w); border-radius: 999px;
+  background: linear-gradient(90deg, var(--cyan), var(--blue));
+  box-shadow: 0 0 10px var(--glow-sm);
+  animation: growBar 1.2s cubic-bezier(0.4,0,0.2,1) both;
+  animation-delay: 0.3s;
+}
+@keyframes growBar { from { width: 0; } }
 
-  /* Skill bars */
-  .skill-bars { display: flex; flex-direction: column; gap: 1.1rem; margin-bottom: 2rem; }
-  .skill-row  { display: flex; flex-direction: column; gap: 6px; }
-  .skill-meta { display: flex; justify-content: space-between; }
-  .skill-name { font-size: 0.9rem; font-weight: 600; color: #fff; }
-  .skill-level{ font-size: 0.78rem; color: var(--accent); }
-  .bar-track  { height: 6px; background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden; }
-  .bar-fill   {
-    height: 100%; border-radius: 999px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    animation: growBar 1s ease both;
-  }
-  @keyframes growBar { from { width: 0 !important; } }
+/* Tools grid */
+.tools-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.8rem; margin-bottom: 2.5rem;
+}
+.tool-chip {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0.6rem; padding: 1rem 0.8rem; cursor: default;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+.tool-chip:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 24px var(--glow-sm);
+  border-color: var(--cyan);
+}
+.tool-icon { width: 36px; height: 36px; object-fit: contain; }
+.tool-chip span { font-size: 0.78rem; font-weight: 500; color: var(--muted); text-align: center; }
 
-  /* Tools */
-  .tools-wrap { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; }
-
-  /* Qualities */
-  .qualities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.2rem; }
-  .quality-card { text-align: center; transition: transform 0.2s; }
-  .quality-card:hover { transform: translateY(-4px); }
-  .q-icon { font-size: 2rem; display: block; margin-bottom: 0.6rem; }
-  .quality-card h3 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
-  .quality-card p  { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+/* Qualities */
+.qualities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.2rem; }
+.quality-card { text-align: center; transition: transform 0.25s; }
+.quality-card:hover { transform: translateY(-5px); }
+.q-icon { font-size: 2rem; display: block; margin-bottom: 0.6rem; }
+.quality-card h3 { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
+.quality-card p  { font-size: 0.83rem; color: var(--muted); line-height: 1.55; }
 </style>
