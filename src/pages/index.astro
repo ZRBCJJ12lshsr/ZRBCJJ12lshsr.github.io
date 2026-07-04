@@ -28,6 +28,7 @@ const base = import.meta.env.BASE_URL;
       <div class="hero-cta">
         <a href={`${base}projects`} class="btn-glow">View Projects</a>
         <a href={`${base}contact`} class="btn-outline">Contact Me</a>
+        <a href={`${base}resume.pdf`} download class="btn-outline btn-resume">⬇ Resume</a>
       </div>
       <div class="hero-stats">
         <div class="hstat"><span class="hstat-n">3.58</span><span class="hstat-l">CGPA</span></div>
@@ -103,6 +104,8 @@ const base = import.meta.env.BASE_URL;
 .hero-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.75; margin-bottom: 2rem; }
 
 .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.btn-resume { border-color: rgba(0,191,165,0.4); color: var(--cyan); font-size: 0.88rem; }
+.btn-resume:hover { background: rgba(0,191,165,0.08); }
 
 .hero-stats { display: flex; align-items: center; justify-content: center; gap: 1.5rem; }
 .hstat { display: flex; flex-direction: column; align-items: center; }
