@@ -10,138 +10,20 @@ const base = import.meta.env.BASE_URL;
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <!-- GSAP + ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 </head>
 <body>
 
-  <!-- Static polygon network background -->
+  <!-- Interactive canvas background -->
   <div class="bg-wrap" aria-hidden="true">
-    <svg class="bg-network" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
-      <defs>
-        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%"   stop-color="#071120" />
-          <stop offset="45%"  stop-color="#0D1B2D" />
-          <stop offset="100%" stop-color="#091528" />
-        </linearGradient>
-        <radialGradient id="glowTL" cx="15%" cy="12%" r="38%">
-          <stop offset="0%"   stop-color="rgba(0,191,165,0.14)" />
-          <stop offset="100%" stop-color="transparent" stop-opacity="0" />
-        </radialGradient>
-        <radialGradient id="glowBR" cx="82%" cy="88%" r="32%">
-          <stop offset="0%"   stop-color="rgba(14,165,233,0.10)" />
-          <stop offset="100%" stop-color="transparent" stop-opacity="0" />
-        </radialGradient>
-      </defs>
-
-      <!-- Base gradient fill -->
-      <rect width="1440" height="900" fill="url(#bgGrad)" />
-      <!-- Ambient corner glows -->
-      <rect width="1440" height="900" fill="url(#glowTL)" />
-      <rect width="1440" height="900" fill="url(#glowBR)" />
-
-      <!-- Polygon network lines -->
-      <g stroke="rgba(0,191,165,0.13)" stroke-width="1" fill="none">
-        <!-- top-left cluster -->
-        <line x1="0"    y1="120" x2="180"  y2="40"  />
-        <line x1="0"    y1="120" x2="80"   y2="300" />
-        <line x1="180"  y1="40"  x2="320"  y2="180" />
-        <line x1="180"  y1="40"  x2="500"  y2="60"  />
-        <line x1="320"  y1="180" x2="80"   y2="300" />
-        <line x1="320"  y1="180" x2="650"  y2="200" />
-        <line x1="320"  y1="180" x2="450"  y2="320" />
-        <line x1="80"   y1="300" x2="200"  y2="480" />
-        <!-- top-center cluster -->
-        <line x1="500"  y1="60"  x2="650"  y2="200" />
-        <line x1="500"  y1="60"  x2="850"  y2="80"  />
-        <line x1="650"  y1="200" x2="450"  y2="320" />
-        <line x1="650"  y1="200" x2="850"  y2="80"  />
-        <line x1="650"  y1="200" x2="600"  y2="380" />
-        <line x1="450"  y1="320" x2="400"  y2="450" />
-        <line x1="450"  y1="320" x2="600"  y2="380" />
-        <!-- top-right cluster -->
-        <line x1="850"  y1="80"  x2="1050" y2="150" />
-        <line x1="850"  y1="80"  x2="950"  y2="350" />
-        <line x1="1050" y1="150" x2="1200" y2="50"  />
-        <line x1="1050" y1="150" x2="1350" y2="220" />
-        <line x1="1200" y1="50"  x2="1440" y2="80"  />
-        <line x1="1350" y1="220" x2="1440" y2="80"  />
-        <line x1="1350" y1="220" x2="1150" y2="450" />
-        <line x1="1350" y1="220" x2="1350" y2="380" />
-        <!-- mid-left cluster -->
-        <line x1="200"  y1="480" x2="400"  y2="450" />
-        <line x1="200"  y1="480" x2="100"  y2="680" />
-        <line x1="200"  y1="480" x2="300"  y2="720" />
-        <line x1="400"  y1="450" x2="600"  y2="380" />
-        <line x1="400"  y1="450" x2="500"  y2="650" />
-        <line x1="400"  y1="450" x2="300"  y2="720" />
-        <!-- mid-center cluster -->
-        <line x1="600"  y1="380" x2="750"  y2="480" />
-        <line x1="600"  y1="380" x2="950"  y2="350" />
-        <line x1="750"  y1="480" x2="950"  y2="350" />
-        <line x1="750"  y1="480" x2="700"  y2="720" />
-        <line x1="750"  y1="480" x2="500"  y2="650" />
-        <!-- mid-right cluster -->
-        <line x1="950"  y1="350" x2="1150" y2="450" />
-        <line x1="950"  y1="350" x2="900"  y2="680" />
-        <line x1="1150" y1="450" x2="1350" y2="380" />
-        <line x1="1150" y1="450" x2="1100" y2="720" />
-        <line x1="1150" y1="450" x2="900"  y2="680" />
-        <line x1="1350" y1="380" x2="1440" y2="580" />
-        <line x1="1350" y1="380" x2="1300" y2="650" />
-        <!-- bottom row -->
-        <line x1="100"  y1="680" x2="300"  y2="720" />
-        <line x1="300"  y1="720" x2="500"  y2="650" />
-        <line x1="500"  y1="650" x2="700"  y2="720" />
-        <line x1="700"  y1="720" x2="900"  y2="680" />
-        <line x1="900"  y1="680" x2="1100" y2="720" />
-        <line x1="1100" y1="720" x2="1300" y2="650" />
-        <line x1="1300" y1="650" x2="1440" y2="580" />
-      </g>
-
-      <!-- Network vertex dots -->
-      <g fill="rgba(0,191,165,0.30)">
-        <circle cx="0"    cy="120" r="2.5" />
-        <circle cx="180"  cy="40"  r="2.5" />
-        <circle cx="320"  cy="180" r="3"   />
-        <circle cx="80"   cy="300" r="2.5" />
-        <circle cx="500"  cy="60"  r="2.5" />
-        <circle cx="650"  cy="200" r="3.5" />
-        <circle cx="450"  cy="320" r="2.5" />
-        <circle cx="850"  cy="80"  r="3"   />
-        <circle cx="1050" cy="150" r="2.5" />
-        <circle cx="1200" cy="50"  r="2.5" />
-        <circle cx="1350" cy="220" r="3"   />
-        <circle cx="1440" cy="80"  r="2"   />
-        <circle cx="200"  cy="480" r="3"   />
-        <circle cx="400"  cy="450" r="3"   />
-        <circle cx="600"  cy="380" r="3.5" />
-        <circle cx="750"  cy="480" r="2.5" />
-        <circle cx="950"  cy="350" r="3"   />
-        <circle cx="1150" cy="450" r="3"   />
-        <circle cx="1350" cy="380" r="2.5" />
-        <circle cx="1440" cy="580" r="2"   />
-        <circle cx="100"  cy="680" r="2.5" />
-        <circle cx="300"  cy="720" r="2.5" />
-        <circle cx="500"  cy="650" r="3"   />
-        <circle cx="700"  cy="720" r="2.5" />
-        <circle cx="900"  cy="680" r="3"   />
-        <circle cx="1100" cy="720" r="2.5" />
-        <circle cx="1300" cy="650" r="2.5" />
-      </g>
-
-      <!-- Larger glowing halo rings at key hub nodes -->
-      <g fill="none" stroke="rgba(0,191,165,0.18)" stroke-width="1">
-        <circle cx="650"  cy="200" r="6" />
-        <circle cx="600"  cy="380" r="6" />
-        <circle cx="950"  cy="350" r="6" />
-      </g>
-    </svg>
-
-    <!-- Subtle dot-grid overlay -->
+    <canvas id="bgCanvas"></canvas>
     <div class="bg-grid"></div>
   </div>
+
+  <!-- Custom cyan cursor (desktop only) -->
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="cursor-core" id="cursorCore"></div>
 
   <!-- Navbar -->
   <nav class="navbar" id="navbar">
@@ -164,52 +46,228 @@ const base = import.meta.env.BASE_URL;
   </footer>
 
   <script>
-    // Mobile nav
+    // ── Mobile nav ──
     document.getElementById('navToggle')?.addEventListener('click', () => {
       document.getElementById('navLinks')?.classList.toggle('open');
     });
 
-    // Active link
+    // ── Active link ──
     const path = window.location.pathname.replace(/\/$/, '') || '/';
     document.querySelectorAll('.nav-links a').forEach(a => {
       const href = (a as HTMLAnchorElement).getAttribute('href')?.replace(/\/$/, '') || '/';
       if (href === path) a.classList.add('active');
     });
 
-    // Navbar shrink on scroll
+    // ── Navbar shrink ──
     window.addEventListener('scroll', () => {
       document.getElementById('navbar')?.classList.toggle('scrolled', window.scrollY > 40);
     });
 
-    // GSAP scroll reveals — runs after scripts load
+    // ── GSAP reveals ──
     window.addEventListener('load', () => {
       if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
       gsap.registerPlugin(ScrollTrigger);
-      gsap.utils.toArray('.reveal').forEach((el: any) => {
-        gsap.fromTo(el,
-          { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out',
-            scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
-          }
-        );
+      const cfg = (from: object, axis?: 'x'|'y') => ({
+        ...from, opacity: 1,
+        ...(axis === 'x' ? {x: 0} : {y: 0}),
+        duration: 0.7, ease: 'power2.out',
       });
-      gsap.utils.toArray('.reveal-left').forEach((el: any) => {
-        gsap.fromTo(el,
-          { opacity: 0, x: -40 },
-          { opacity: 1, x: 0, duration: 0.7, ease: 'power2.out',
-            scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
-          }
-        );
-      });
-      gsap.utils.toArray('.reveal-right').forEach((el: any) => {
-        gsap.fromTo(el,
-          { opacity: 0, x: 40 },
-          { opacity: 1, x: 0, duration: 0.7, ease: 'power2.out',
-            scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
-          }
-        );
-      });
+      gsap.utils.toArray('.reveal').forEach((el: any) =>
+        gsap.fromTo(el, {opacity:0,y:40}, {...cfg({opacity:0,y:40}),
+          scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}})
+      );
+      gsap.utils.toArray('.reveal-left').forEach((el: any) =>
+        gsap.fromTo(el, {opacity:0,x:-40}, {...cfg({opacity:0,x:-40},'x'),
+          scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}})
+      );
+      gsap.utils.toArray('.reveal-right').forEach((el: any) =>
+        gsap.fromTo(el, {opacity:0,x:40}, {...cfg({opacity:0,x:40},'x'),
+          scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}})
+      );
     });
+
+    // ════════════════════════════════════════════
+    //  CANVAS BACKGROUND — polygon network + mouse blackhole
+    // ════════════════════════════════════════════
+    (function () {
+      const canvas = document.getElementById('bgCanvas') as HTMLCanvasElement;
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d')!;
+
+      const BASE_W = 1440, BASE_H = 900;
+      let W = 0, H = 0, sx = 1, sy = 1;
+
+      // Node original positions (base 1440×900 space)
+      const RAW_NODES = [
+        [0,120],[180,40],[320,180],[80,300],
+        [500,60],[650,200],[450,320],
+        [850,80],[1050,150],[1200,50],[1350,220],[1440,80],
+        [200,480],[400,450],[600,380],[750,480],[950,350],[1150,450],[1350,380],[1440,580],
+        [100,680],[300,720],[500,650],[700,720],[900,680],[1100,720],[1300,650],
+        // extra center nodes for density
+        [720,140],[280,570],[1100,570]
+      ];
+
+      type Node = {ox:number;oy:number;cx:number;cy:number};
+      const nodes: Node[] = RAW_NODES.map(([ox,oy]) => ({ox,oy,cx:ox,cy:oy}));
+
+      const HUBS = new Set([5,14,16,27]);
+
+      const EDGES = [
+        [0,1],[0,3],[1,2],[1,4],[2,3],[2,5],[2,6],[3,12],
+        [4,5],[4,7],[5,6],[5,7],[5,14],[5,27],[6,13],[6,14],
+        [7,8],[7,16],[7,27],[8,9],[8,10],[9,11],[10,11],[10,17],[10,18],
+        [12,13],[12,20],[12,21],[12,28],[13,14],[13,22],[13,21],[13,28],
+        [14,15],[14,16],[15,16],[15,22],[15,23],[16,17],[16,23],[16,24],
+        [17,18],[17,24],[17,25],[17,29],[18,19],[18,25],[18,26],[19,26],
+        [20,21],[21,22],[22,23],[23,24],[24,25],[25,26],[25,29],[24,29],
+        [27,14],[28,20],[28,21]
+      ];
+
+      let mx = -9999, my = -9999;
+      const RADIUS  = 240;  // influence radius (base coords)
+      const STRENGTH = 0.32; // how far nodes pull (0–1)
+      const LERP    = 0.09;  // spring return speed
+
+      function resize() {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+        sx = W / BASE_W;
+        sy = H / BASE_H;
+      }
+
+      // Mouse position in base coords
+      const onMove = (e: MouseEvent) => { mx = e.clientX / sx; my = e.clientY / sy; };
+      const onLeave = () => { mx = -9999; my = -9999; };
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseleave', onLeave);
+
+      // Only run influence on pointer:fine (desktop) devices
+      const isMouse = window.matchMedia('(pointer: fine)').matches;
+
+      function tick() {
+        for (const n of nodes) {
+          let tx = n.ox, ty = n.oy;
+          if (isMouse && mx > -9000) {
+            const dx = mx - n.ox, dy = my - n.oy;
+            const dist = Math.hypot(dx, dy);
+            if (dist < RADIUS) {
+              const t = Math.pow(1 - dist / RADIUS, 1.6) * STRENGTH;
+              tx = n.ox + dx * t;
+              ty = n.oy + dy * t;
+            }
+          }
+          n.cx += (tx - n.cx) * LERP;
+          n.cy += (ty - n.cy) * LERP;
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+
+        // ─ base gradient ─
+        const bg = ctx.createLinearGradient(0, 0, W, H);
+        bg.addColorStop(0,    '#071120');
+        bg.addColorStop(0.45, '#0D1B2D');
+        bg.addColorStop(1,    '#091528');
+        ctx.fillStyle = bg;
+        ctx.fillRect(0, 0, W, H);
+
+        // ─ ambient corner glows ─
+        const g1 = ctx.createRadialGradient(W*.15,H*.12,0, W*.15,H*.12,W*.42);
+        g1.addColorStop(0,'rgba(0,191,165,0.16)'); g1.addColorStop(1,'transparent');
+        ctx.fillStyle = g1; ctx.fillRect(0,0,W,H);
+
+        const g2 = ctx.createRadialGradient(W*.84,H*.88,0, W*.84,H*.88,W*.34);
+        g2.addColorStop(0,'rgba(14,165,233,0.12)'); g2.addColorStop(1,'transparent');
+        ctx.fillStyle = g2; ctx.fillRect(0,0,W,H);
+
+        // ─ mouse proximity glow ─
+        if (isMouse && mx > -9000) {
+          const mg = ctx.createRadialGradient(mx*sx,my*sy,0, mx*sx,my*sy,260*sx);
+          mg.addColorStop(0,'rgba(0,191,165,0.09)'); mg.addColorStop(1,'transparent');
+          ctx.fillStyle = mg; ctx.fillRect(0,0,W,H);
+        }
+
+        // ─ scale positions ─
+        const pos = nodes.map(n => ({x: n.cx*sx, y: n.cy*sy}));
+        const s = Math.min(sx, sy);
+
+        // ─ edges ─
+        ctx.strokeStyle = 'rgba(0,191,165,0.25)';
+        ctx.lineWidth = 1.6;
+        for (const [a,b] of EDGES) {
+          ctx.beginPath();
+          ctx.moveTo(pos[a].x, pos[a].y);
+          ctx.lineTo(pos[b].x, pos[b].y);
+          ctx.stroke();
+        }
+
+        // ─ nodes ─
+        for (let i = 0; i < nodes.length; i++) {
+          const {x,y} = pos[i];
+          const isHub = HUBS.has(i);
+          const r = (isHub ? 6 : 4) * s;
+
+          ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2);
+          ctx.fillStyle = 'rgba(0,191,165,0.55)';
+          ctx.fill();
+
+          // outer halo ring on hub nodes
+          if (isHub) {
+            ctx.beginPath(); ctx.arc(x, y, 11*s, 0, Math.PI*2);
+            ctx.strokeStyle = 'rgba(0,191,165,0.22)';
+            ctx.lineWidth = 1.2;
+            ctx.stroke();
+          }
+        }
+      }
+
+      function loop() { tick(); draw(); requestAnimationFrame(loop); }
+
+      resize();
+      window.addEventListener('resize', resize);
+      loop();
+    })();
+
+    // ════════════════════════════════════════════
+    //  CUSTOM CURSOR (desktop / pointer:fine only)
+    // ════════════════════════════════════════════
+    (function () {
+      const ring = document.getElementById('cursorRing') as HTMLElement;
+      const core = document.getElementById('cursorCore') as HTMLElement;
+      if (!ring || !core) return;
+      if (!window.matchMedia('(pointer: fine)').matches) return;
+
+      let tx = 0, ty = 0; // target (mouse position)
+      let rx = 0, ry = 0; // ring current (lagged)
+
+      document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
+
+      // Show/hide on enter/leave window
+      document.addEventListener('mouseenter', () => { ring.style.opacity='1'; core.style.opacity='1'; });
+      document.addEventListener('mouseleave', () => { ring.style.opacity='0'; core.style.opacity='0'; });
+
+      // Expand ring on interactive elements
+      const targets = 'a, button, .glass, input, textarea, select, [role="button"]';
+      document.querySelectorAll(targets).forEach(el => {
+        el.addEventListener('mouseenter', () => ring.classList.add('hover'));
+        el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+      });
+
+      function moveCursor() {
+        // Core dot: instant
+        core.style.left = tx + 'px';
+        core.style.top  = ty + 'px';
+        // Ring: smooth lag
+        rx += (tx - rx) * 0.13;
+        ry += (ty - ry) * 0.13;
+        ring.style.left = rx + 'px';
+        ring.style.top  = ry + 'px';
+        requestAnimationFrame(moveCursor);
+      }
+      moveCursor();
+    })();
   </script>
 </body>
 </html>
@@ -241,12 +299,12 @@ body {
   overflow-x: hidden;
 }
 
-/* ── Static polygon network background ── */
+/* ── Canvas background ── */
 .bg-wrap {
-  position: fixed; inset: 0; z-index: 0;
+  position: fixed; inset: 0; z-index: -1; /* always behind content */
   pointer-events: none; overflow: hidden;
 }
-.bg-network {
+#bgCanvas {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
 }
@@ -256,6 +314,42 @@ body {
     linear-gradient(rgba(0,191,165,0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,191,165,0.03) 1px, transparent 1px);
   background-size: 60px 60px;
+}
+
+/* ── Custom cursor — desktop (pointer:fine) only ── */
+.cursor-ring,
+.cursor-core {
+  position: fixed; pointer-events: none; z-index: 9999;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s;
+}
+.cursor-ring {
+  width: 34px; height: 34px;
+  border: 2px solid rgba(0,191,165,0.80);
+  box-shadow: 0 0 14px rgba(0,191,165,0.45), inset 0 0 6px rgba(0,191,165,0.08);
+  transition: width .22s ease, height .22s ease, border-color .22s, box-shadow .22s, background .22s, opacity .2s;
+}
+.cursor-ring.hover {
+  width: 54px; height: 54px;
+  border-color: var(--cyan);
+  background: rgba(0,191,165,0.07);
+  box-shadow: 0 0 26px rgba(0,191,165,0.55);
+}
+.cursor-core {
+  width: 6px; height: 6px;
+  background: var(--cyan);
+  box-shadow: 0 0 8px rgba(0,191,165,0.95);
+}
+/* mobile / touch — hide cursor, restore default */
+@media (pointer: coarse) {
+  .cursor-ring, .cursor-core { display: none; }
+  * { cursor: auto !important; }
+}
+/* desktop — hide default cursor */
+@media (pointer: fine) {
+  * { cursor: none; }
+  a, button, input, textarea, select { cursor: none; }
 }
 
 /* ── Navbar ── */
@@ -271,14 +365,13 @@ body {
   padding: 0.7rem 2.5rem;
   box-shadow: 0 1px 0 var(--border), 0 8px 32px rgba(0,0,0,0.4);
 }
-
 .nav-logo {
   font-size: 1.3rem; font-weight: 800; text-decoration: none;
-  color: var(--text); letter-spacing: 1px;
+  color: var(--cyan); letter-spacing: 2px;
+  text-shadow: 0 0 16px rgba(0,191,165,0.4);
   transition: text-shadow 0.3s;
 }
-.nav-logo:hover { text-shadow: 0 0 20px var(--glow); }
-.logo-bracket { color: var(--cyan); }
+.nav-logo:hover { text-shadow: 0 0 28px rgba(0,191,165,0.7); }
 
 .nav-links { display: flex; gap: 2rem; }
 .nav-links a {
@@ -292,12 +385,10 @@ body {
   background: linear-gradient(90deg, var(--cyan), var(--blue));
   transform: scaleX(0); transform-origin: left; transition: transform 0.25s;
 }
-.nav-links a:hover, .nav-links a.active {
-  color: var(--cyan); text-shadow: 0 0 12px var(--glow-sm);
-}
+.nav-links a:hover, .nav-links a.active { color: var(--cyan); text-shadow: 0 0 12px var(--glow-sm); }
 .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
 
-.nav-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.4rem; cursor: pointer; }
+.nav-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.4rem; cursor: none; }
 
 @media (max-width: 680px) {
   .nav-toggle { display: block; }
@@ -305,8 +396,7 @@ body {
     display: none; flex-direction: column; gap: 1.2rem;
     position: absolute; top: 100%; left: 0; right: 0;
     background: rgba(7,17,32,0.97); padding: 1.5rem 2.5rem;
-    border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border); backdrop-filter: blur(16px);
   }
   .nav-links.open { display: flex; }
 }
@@ -338,7 +428,7 @@ footer {
   background: linear-gradient(90deg, var(--border), transparent);
 }
 
-/* ── Glass card — static outer glow, pulsing dynamic on hover ── */
+/* ── Glass card — static glow always on, pulsing ring on hover ── */
 .glass {
   background: var(--card);
   border: 1px solid var(--border);
@@ -346,19 +436,17 @@ footer {
   backdrop-filter: blur(16px);
   padding: 1.8rem;
   position: relative;
-  /* static ambient glow — clearly visible */
   box-shadow:
     0 0 0 1px rgba(0,191,165,0.08),
-    0 0 28px rgba(0,191,165,0.20),
-    0 0 70px rgba(0,191,165,0.07),
-    inset 0 0 30px rgba(0,191,165,0.04);
+    0 0 30px rgba(0,191,165,0.20),
+    0 0 72px rgba(0,191,165,0.07),
+    inset 0 0 32px rgba(0,191,165,0.04);
   transition: border-color 0.4s, box-shadow 0.4s;
 }
-/* outer pulsing ring pseudo-element */
+/* outer pulsing ring element */
 .glass::after {
   content: '';
-  position: absolute;
-  inset: -2px;
+  position: absolute; inset: -2px;
   border-radius: calc(var(--radius) + 2px);
   border: 1px solid rgba(0,191,165,0);
   pointer-events: none;
@@ -366,80 +454,55 @@ footer {
 }
 .glass:hover {
   border-color: rgba(0,191,165,0.60);
-  /* much stronger on hover */
   box-shadow:
-    0 0 50px rgba(0,191,165,0.48),
+    0 0 52px rgba(0,191,165,0.48),
     0 0 110px rgba(0,191,165,0.20),
     0 0 180px rgba(0,191,165,0.07),
     0 10px 40px rgba(0,0,0,0.5),
     inset 0 0 40px rgba(0,191,165,0.08);
 }
-/* pulsing outer ring activates on hover — this IS the "dynamic" effect */
 .glass:hover::after {
   border-color: rgba(0,191,165,0.35);
   box-shadow: 0 0 24px rgba(0,191,165,0.30);
   animation: glowRingPulse 2s ease-in-out infinite;
 }
 @keyframes glowRingPulse {
-  0%, 100% {
-    border-color: rgba(0,191,165,0.25);
-    box-shadow: 0 0 20px rgba(0,191,165,0.22);
-  }
-  50% {
-    border-color: rgba(0,191,165,0.60);
-    box-shadow: 0 0 50px rgba(0,191,165,0.50);
-  }
+  0%, 100% { border-color: rgba(0,191,165,0.22); box-shadow: 0 0 18px rgba(0,191,165,0.20); }
+  50%       { border-color: rgba(0,191,165,0.60); box-shadow: 0 0 52px rgba(0,191,165,0.52); }
 }
-/* Icon badge springs up on card hover */
 .glass:hover .icon-badge {
   transform: scale(1.15);
-  box-shadow:
-    0 0 20px rgba(0,191,165,0.50),
-    0 0 8px rgba(14,165,233,0.30),
-    inset 0 1px 0 rgba(255,255,255,0.12);
+  box-shadow: 0 0 22px rgba(0,191,165,0.52), 0 0 8px rgba(14,165,233,0.30), inset 0 1px 0 rgba(255,255,255,0.12);
 }
 
 /* ── Icon badge — iOS curved-square style ── */
 .icon-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 54px;
-  height: 54px;
-  border-radius: 14px;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 54px; height: 54px; border-radius: 14px;
   background: linear-gradient(135deg, rgba(0,191,165,0.18) 0%, rgba(14,165,233,0.12) 100%);
-  border: 1px solid rgba(0,191,165,0.22);
-  font-size: 1.65rem;
-  box-shadow:
-    0 0 12px rgba(0,191,165,0.10),
-    inset 0 1px 0 rgba(255,255,255,0.06);
+  border: 1px solid rgba(0,191,165,0.22); font-size: 1.65rem;
+  box-shadow: 0 0 12px rgba(0,191,165,0.10), inset 0 1px 0 rgba(255,255,255,0.06);
   transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s;
   flex-shrink: 0;
 }
 
-/* ── Glow button ── */
+/* ── Buttons ── */
 .btn-glow {
   display: inline-block; padding: 0.75rem 2rem; border-radius: 999px;
   background: linear-gradient(135deg, var(--cyan), var(--blue));
   color: #fff; font-weight: 700; font-size: 0.9rem; text-decoration: none;
-  border: none; cursor: pointer;
+  border: none; cursor: none;
   box-shadow: 0 0 20px var(--glow-sm);
-  transition: box-shadow 0.3s, transform 0.2s, opacity 0.2s;
+  transition: box-shadow 0.3s, transform 0.2s;
 }
-.btn-glow:hover {
-  box-shadow: 0 0 40px var(--glow), 0 4px 20px rgba(0,0,0,0.3);
-  transform: translateY(-2px);
-}
+.btn-glow:hover { box-shadow: 0 0 40px var(--glow), 0 4px 20px rgba(0,0,0,0.3); transform: translateY(-2px); }
 .btn-outline {
   display: inline-block; padding: 0.75rem 2rem; border-radius: 999px;
   border: 1px solid var(--border); color: var(--text);
   font-weight: 600; font-size: 0.9rem; text-decoration: none;
   transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s, color 0.2s;
 }
-.btn-outline:hover {
-  border-color: var(--cyan); color: var(--cyan);
-  box-shadow: 0 0 20px var(--glow-sm); transform: translateY(-2px);
-}
+.btn-outline:hover { border-color: var(--cyan); color: var(--cyan); box-shadow: 0 0 20px var(--glow-sm); transform: translateY(-2px); }
 
 /* ── Tag pill ── */
 .tag {
@@ -451,18 +514,12 @@ footer {
 }
 .tag:hover { background: rgba(0,191,165,0.2); box-shadow: 0 0 12px var(--glow-sm); }
 
-/* ── Dark devicons: make visible on dark bg ── */
-img.tool-icon[alt="GitHub"],
-img.tag-icon[alt="GitHub"] {
-  filter: brightness(0) invert(0.85);
-}
+/* ── Dark devicons visible on dark bg ── */
+img.tool-icon[alt="GitHub"], img.tag-icon[alt="GitHub"] { filter: brightness(0) invert(0.85); }
 
-/* ── Fade animations (CSS fallback if GSAP not loaded) ── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(28px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+/* ── Fade animations ── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
 .fade-up { animation: fadeUp 0.65s ease both; }
-.d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.2s; }
-.d3 { animation-delay: 0.3s; } .d4 { animation-delay: 0.4s; }
+.d1 { animation-delay:0.1s; } .d2 { animation-delay:0.2s; }
+.d3 { animation-delay:0.3s; } .d4 { animation-delay:0.4s; }
 </style>

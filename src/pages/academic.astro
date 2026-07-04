@@ -68,45 +68,46 @@ import Layout from '../layouts/Layout.astro';
   .timeline { position: relative; margin-bottom: 3rem; }
   .timeline::before {
     content: ''; position: absolute; left: 16px; top: 0; bottom: 0;
-    width: 2px; background: linear-gradient(to bottom, var(--accent), var(--accent2));
-    opacity: 0.4;
+    width: 2px; background: linear-gradient(to bottom, var(--cyan), var(--blue));
+    opacity: 0.45;
   }
   .timeline-item { position: relative; padding-left: 52px; margin-bottom: 2rem; }
   .tl-dot {
     position: absolute; left: 8px; top: 24px;
     width: 16px; height: 16px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    border: 3px solid var(--bg); z-index: 1;
+    background: linear-gradient(135deg, var(--cyan), var(--blue));
+    border: 3px solid var(--bg); z-index: 2;
+    box-shadow: 0 0 10px rgba(0,191,165,0.5);
   }
   .tl-badge {
     display: inline-block; padding: 0.2rem 0.8rem; border-radius: 999px;
     font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
     letter-spacing: 1px; margin-bottom: 0.6rem;
   }
-  .current-badge { background: rgba(45,212,191,0.15); color: var(--teal); border: 1px solid rgba(45,212,191,0.3); }
-  .done-badge    { background: rgba(167,139,250,0.15); color: var(--accent); border: 1px solid rgba(167,139,250,0.3); }
+  .current-badge { background: rgba(0,191,165,0.14); color: var(--cyan);  border: 1px solid rgba(0,191,165,0.35); }
+  .done-badge    { background: rgba(14,165,233,0.12); color: var(--blue);  border: 1px solid rgba(14,165,233,0.30); }
 
   .tl-card h2    { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem; }
-  .tl-degree     { color: var(--accent); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .tl-degree     { color: var(--cyan); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; }
   .tl-meta       { color: var(--muted); font-size: 0.8rem; margin-bottom: 0.6rem; }
   .tl-desc       { color: var(--muted); font-size: 0.88rem; line-height: 1.7; margin-bottom: 0.4rem; }
   .cgpa-badge {
     display: inline-block; margin-top: 0.8rem;
-    background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.3);
+    background: rgba(0,191,165,0.10); border: 1px solid rgba(0,191,165,0.30);
     padding: 0.3rem 1rem; border-radius: 999px;
     color: var(--muted); font-size: 0.85rem;
   }
-  .cgpa-badge strong { color: var(--accent); font-size: 1.1rem; }
+  .cgpa-badge strong { color: var(--cyan); font-size: 1.1rem; }
 
   .section-h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 1.2rem; }
 
   .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 1.2rem; }
-  .course-card h3 { font-size: 0.9rem; font-weight: 700; color: var(--accent); margin-bottom: 0.8rem; }
+  .course-card h3 { font-size: 0.9rem; font-weight: 700; color: var(--cyan); margin-bottom: 0.8rem; }
   .course-card ul { list-style: none; padding: 0; }
   .course-card li {
     color: var(--muted); font-size: 0.85rem; padding: 0.25rem 0;
     border-bottom: 1px solid var(--border);
   }
   .course-card li:last-child { border-bottom: none; }
-  .course-card li::before { content: "▸ "; color: var(--accent); }
+  .course-card li::before { content: "▸ "; color: var(--cyan); }
 </style>
