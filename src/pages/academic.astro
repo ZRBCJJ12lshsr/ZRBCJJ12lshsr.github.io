@@ -1,0 +1,112 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Academic · CJJ">
+<div class="page-section">
+
+  <h1 class="page-title fade-up">Academic History</h1>
+  <p class="page-subtitle fade-up">My educational journey</p>
+
+  <div class="timeline fade-up delay-1">
+    <!-- UTeM -->
+    <div class="timeline-item current">
+      <div class="tl-dot"></div>
+      <div class="glass tl-card">
+        <span class="tl-badge current-badge">Current</span>
+        <h2>Universiti Teknikal Malaysia Melaka (UTeM)</h2>
+        <p class="tl-degree">Bachelor of Computer Science (Software Development) with Honours</p>
+        <p class="tl-meta">Programme: BITS S1G2 · Year 3 · In Progress</p>
+        <p class="tl-desc">
+          Pursuing a comprehensive software engineering education with focus on mobile development,
+          distributed systems, database design, and emerging technologies. Actively engaged in
+          projects combining technical skills with user-centered design principles.
+        </p>
+        <div class="cgpa-badge">CGPA <strong>3.58</strong></div>
+      </div>
+    </div>
+
+    <!-- KTEPJ -->
+    <div class="timeline-item">
+      <div class="tl-dot"></div>
+      <div class="glass tl-card">
+        <span class="tl-badge done-badge">Completed</span>
+        <h2>Kolej Tingkatan Enam Pudu Jaya (KTEPJ)</h2>
+        <p class="tl-degree">Pre-University (Form 6)</p>
+        <p class="tl-meta">Foundation Studies · Completed 2022</p>
+        <p class="tl-desc">
+          Completed pre-university education with a strong foundation in mathematics and sciences,
+          preparing for tertiary education in technology and engineering fields.
+        </p>
+        <p class="tl-desc">SPM Result: Kepujian Tertinggi</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Coursework -->
+  <h2 class="section-h2 fade-up delay-2">Relevant Coursework</h2>
+  <div class="course-grid fade-up delay-2">
+    {[
+      { cat: "💻 Programming & Development", items: ["Programming Fundamentals (C++)", "Object-Oriented Programming (Java)", "Mobile Application Development (Kotlin)", "Distributed Application Development", "Web Application Development"] },
+      { cat: "🗄 Database & Systems",         items: ["Database Introduction", "Database Design", "Oracle DB Foundations (Cert.)", "Operating Systems", "Data Communication & Networking"] },
+      { cat: "🧮 Mathematics & Logic",        items: ["Linear Algebra & Matrices", "Numerical Methods", "Statistics & Probability", "Data Structures & Algorithms", "Algorithm Analysis"] },
+      { cat: "🤖 AI & Design",                items: ["Artificial Intelligence", "Human-Computer Interaction", "Interactive Media Authoring", "Geographic Information Systems"] },
+      { cat: "📋 Professional Skills",        items: ["Software Requirements & Design", "Software Verification & Validation", "Software Project Management", "IT Security", "Technology Entrepreneurship"] },
+    ].map(g => (
+      <div class="glass course-card">
+        <h3>{g.cat}</h3>
+        <ul>
+          {g.items.map(i => <li>{i}</li>)}
+        </ul>
+      </div>
+    ))}
+  </div>
+
+</div>
+</Layout>
+
+<style>
+  .timeline { position: relative; margin-bottom: 3rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 16px; top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(to bottom, var(--accent), var(--accent2));
+    opacity: 0.4;
+  }
+  .timeline-item { position: relative; padding-left: 52px; margin-bottom: 2rem; }
+  .tl-dot {
+    position: absolute; left: 8px; top: 24px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border: 3px solid var(--bg); z-index: 1;
+  }
+  .tl-badge {
+    display: inline-block; padding: 0.2rem 0.8rem; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 0.6rem;
+  }
+  .current-badge { background: rgba(45,212,191,0.15); color: var(--teal); border: 1px solid rgba(45,212,191,0.3); }
+  .done-badge    { background: rgba(167,139,250,0.15); color: var(--accent); border: 1px solid rgba(167,139,250,0.3); }
+
+  .tl-card h2    { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem; }
+  .tl-degree     { color: var(--accent); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .tl-meta       { color: var(--muted); font-size: 0.8rem; margin-bottom: 0.6rem; }
+  .tl-desc       { color: var(--muted); font-size: 0.88rem; line-height: 1.7; margin-bottom: 0.4rem; }
+  .cgpa-badge {
+    display: inline-block; margin-top: 0.8rem;
+    background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.3);
+    padding: 0.3rem 1rem; border-radius: 999px;
+    color: var(--muted); font-size: 0.85rem;
+  }
+  .cgpa-badge strong { color: var(--accent); font-size: 1.1rem; }
+
+  .section-h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 1.2rem; }
+
+  .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 1.2rem; }
+  .course-card h3 { font-size: 0.9rem; font-weight: 700; color: var(--accent); margin-bottom: 0.8rem; }
+  .course-card ul { list-style: none; padding: 0; }
+  .course-card li {
+    color: var(--muted); font-size: 0.85rem; padding: 0.25rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .course-card li:last-child { border-bottom: none; }
+  .course-card li::before { content: "▸ "; color: var(--accent); }
+</style>
